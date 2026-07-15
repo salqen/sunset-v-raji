@@ -12,11 +12,13 @@
   burger.addEventListener('click', function () {
     var open = links.classList.toggle('open');
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
   });
   links.addEventListener('click', function (e) {
     if (e.target.tagName === 'A') {
       links.classList.remove('open');
       burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     }
   });
 
@@ -150,6 +152,25 @@
     });
   }
 
+
+  /* ---------- mobilné background videá (hero + finale) ---------- */
+  var mqMobile = window.matchMedia('(max-width: 768px)');
+  function initBgVideos() {
+    if (!mqMobile.matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    Array.prototype.forEach.call(document.querySelectorAll('video[data-src-mobile]'), function (v) {
+      if (v.dataset.loaded) return;
+      v.dataset.loaded = '1';
+      v.src = v.dataset.srcMobile;
+      v.muted = true;
+      v.loop = true;
+      var p = v.play();
+      var show = function () { v.classList.add('playing'); };
+      if (p && p.then) { p.then(show).catch(function () {}); } else { v.addEventListener('playing', show); }
+    });
+  }
+  initBgVideos();
+  mqMobile.addEventListener ? mqMobile.addEventListener('change', initBgVideos) : mqMobile.addListener(initBgVideos);
 
   /* ---------- parallax ---------- */
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

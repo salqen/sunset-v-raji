@@ -6,9 +6,13 @@ $c = json_decode((string)file_get_contents($contentFile), true);
 if (!is_array($c)) { http_response_code(500); exit('Chyba obsahu.'); }
 function h(?string $s): string { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 $site = $c['site']; $hero = $c['hero']; $info = $c['info']; $place = $c['place'];
-$heroVideo = is_file(__DIR__ . '/assets/video/hero.webm') ? 'assets/video/hero.webm' : null;
-$heroVideoMp4 = is_file(__DIR__ . '/assets/video/hero.mp4') ? 'assets/video/hero.mp4' : null;
+$heroVideoMobile = is_file(__DIR__ . '/assets/video/hero-mobile.mp4') ? 'assets/video/hero-mobile.mp4' : null;
+$finaleVideoMobile = is_file(__DIR__ . '/assets/video/finale-mobile.mp4') ? 'assets/video/finale-mobile.mp4' : null;
 $baseUrl = 'https://sunsetvraji.sk/';
+$priceParts = array_map('trim', explode(':', (string)($c['party']['price_label'] ?? ''), 2));
+$priceTitle = $priceParts[0]; $priceValue = $priceParts[1] ?? '';
+$actsPhoto = array_values(array_filter($c['activities'], fn($a) => !empty($a['photo'])));
+$actsPlain = array_values(array_filter($c['activities'], fn($a) => empty($a['photo'])));
 $galleryAll = $c['gallery'] ?? [];
 $galleryFirst = array_slice($galleryAll, 0, 8);
 $galleryHasMore = count($galleryAll) > 8;
@@ -38,7 +42,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preload" href="assets/fonts/Montserrat-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css?v=3">
+<link rel="stylesheet" href="assets/css/style.css?v=4">
 <script type="application/ld+json">
 <?= json_encode([
   '@context' => 'https://schema.org',
@@ -81,16 +85,12 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg" aria-hidden="true">
-    <?php if ($heroVideo || $heroVideoMp4): ?>
-    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/hero.jpg">
-      <?php if ($heroVideo): ?><source src="<?= h($heroVideo) ?>" type="video/webm"><?php endif; ?>
-      <?php if ($heroVideoMp4): ?><source src="<?= h($heroVideoMp4) ?>" type="video/mp4"><?php endif; ?>
-    </video>
-    <?php else: ?>
     <picture>
       <source media="(max-width: 640px)" srcset="assets/img/hero-mobile.jpg">
       <img class="hero-photo" src="assets/img/hero.jpg" alt="" fetchpriority="high">
     </picture>
+    <?php if ($heroVideoMobile): ?>
+    <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/hero-mobile.jpg" data-src-mobile="<?= h($heroVideoMobile) ?>"></video>
     <?php endif; ?>
     <div class="hero-shade"></div>
   </div>
@@ -139,14 +139,11 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
       </ul>
     </div>
     <?php endif; ?>
+    <?php if ($actsPhoto): ?>
     <div class="act-grid">
-      <?php foreach ($c['activities'] as $a): ?>
+      <?php foreach ($actsPhoto as $a): ?>
       <div class="act-card">
-        <?php if (!empty($a['photo'])): ?>
         <img class="act-photo" src="<?= h($a['photo']) ?>" alt="<?= h($a['title']) ?>" loading="lazy" decoding="async">
-        <?php else: ?>
-        <div class="act-photo act-placeholder" aria-hidden="true"><span><?= h($a['icon'] ?? '✨') ?></span></div>
-        <?php endif; ?>
         <div class="act-body">
           <h4><?= h($a['title']) ?></h4>
           <?php if (!empty($a['desc'])): ?><p><?= h($a['desc']) ?></p><?php endif; ?>
@@ -154,6 +151,17 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
       </div>
       <?php endforeach; ?>
     </div>
+    <?php endif; ?>
+    <?php if ($actsPlain): ?>
+    <div class="act-more">
+      <p class="act-more-title">A okrem toho ťa čaká</p>
+      <ul class="act-chips">
+        <?php foreach ($actsPlain as $a): ?>
+        <li<?php if (!empty($a['desc'])): ?> title="<?= h($a['desc']) ?>"<?php endif; ?>><span class="ci" aria-hidden="true"><?= h($a['icon'] ?? '✨') ?></span><?= h($a['title']) ?></li>
+        <?php endforeach; ?>
+      </ul>
+    </div>
+    <?php endif; ?>
     <?php if (!empty($c['day']['note'])): ?><p class="center muted small note-gap"><?= h($c['day']['note']) ?></p><?php endif; ?>
   </div>
 </section>
@@ -202,7 +210,10 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
     <p class="eyebrow script light-script"><?= h($c['party']['eyebrow']) ?></p>
     <h2 class="light"><?= h($c['party']['heading']) ?></h2>
     <p class="lead light-p"><?= h($c['party']['text']) ?></p>
-    <p class="price-badge"><?= h($c['party']['price_label']) ?></p>
+    <div class="price-box">
+      <span class="price-title"><?= h($priceTitle) ?></span>
+      <?php if ($priceValue !== ''): ?><span class="price-value"><?= h($priceValue) ?></span><?php endif; ?>
+    </div>
     <p class="small light-p"><?= h($c['party']['price_note']) ?></p>
   </div>
 </section>
@@ -317,11 +328,31 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
   </div>
 </section>
 
+<?php if (!empty($c['sponsors'])): ?>
+<!-- PARTNERI PODUJATIA -->
+<section class="sponsors-sec" id="partneri">
+  <div class="wrap center">
+    <p class="eyebrow script light-script">Ďakujeme, že to robia s nami</p>
+    <h2>Partneri podujatia</h2>
+    <div class="sponsors-row">
+      <?php foreach ($c['sponsors'] as $s): ?>
+      <img src="<?= h($s['img']) ?>" alt="<?= h($s['name']) ?>" title="<?= h($s['name']) ?>" loading="lazy" decoding="async">
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
 </main>
 
 <!-- FINALE + FOOTER (spoločné pozadie) -->
 <div class="finale">
-  <div class="finale-bg" data-parallax aria-hidden="true"><img src="assets/img/bg/finale.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="finale-bg" data-parallax aria-hidden="true">
+    <img src="assets/img/bg/finale.jpg" alt="" loading="lazy" decoding="async">
+    <?php if ($finaleVideoMobile): ?>
+    <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/bg/finale.jpg" data-src-mobile="<?= h($finaleVideoMobile) ?>"></video>
+    <?php endif; ?>
+  </div>
   <div class="finale-shade" aria-hidden="true"></div>
   <div class="finale-content">
     <div class="wrap center finale-cta">
@@ -331,23 +362,12 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
       <p class="foot-date"><?= h($c['finale']['date_line']) ?></p>
       <p class="foot-place"><?= h($c['finale']['place_line']) ?></p>
       <p class="script finale-claim"><?= h($c['finale']['claim']) ?></p>
+      <?php if (!empty($site['facebook_event'])): ?>
       <div class="cta-buttons">
-        <a class="btn btn-light" href="<?= h($mapsUrl) ?>" target="_blank" rel="noopener">Otvoriť miesto v mapách</a>
-        <?php if (!empty($site['facebook_event'])): ?>
         <a class="btn btn-outline" href="<?= h($site['facebook_event']) ?>" target="_blank" rel="noopener">Sledovať udalosť na Facebooku</a>
-        <?php endif; ?>
       </div>
+      <?php endif; ?>
     </div>
-    <?php if (!empty($c['sponsors'])): ?>
-    <div class="wrap sponsors">
-      <p class="sponsors-title">Partneri podujatia</p>
-      <div class="sponsors-row">
-        <?php foreach ($c['sponsors'] as $s): ?>
-        <img src="<?= h($s['img']) ?>" alt="<?= h($s['name']) ?>" title="<?= h($s['name']) ?>" loading="lazy" decoding="async">
-        <?php endforeach; ?>
-      </div>
-    </div>
-    <?php endif; ?>
     <footer class="foot-area">
       <div class="wrap foot-grid">
         <div>
@@ -366,12 +386,23 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
             <li><a href="mailto:<?= h($site['support_email']) ?>"><?= h($site['support_email']) ?></a></li>
           </ul>
         </div>
+        <?php if (!empty($site['instagram']) || !empty($site['facebook_event'])): ?>
         <div>
           <h4>Sledovať</h4>
           <ul>
             <?php if (!empty($site['instagram'])): ?><li><a href="<?= h($site['instagram']) ?>" target="_blank" rel="noopener">Instagram</a></li><?php endif; ?>
             <?php if (!empty($site['facebook_event'])): ?><li><a href="<?= h($site['facebook_event']) ?>" target="_blank" rel="noopener">Facebook</a></li><?php endif; ?>
+          </ul>
+        </div>
+        <?php endif; ?>
+        <div>
+          <h4>Právne</h4>
+          <ul>
             <li><a href="ochrana-osobnych-udajov.php">Ochrana osobných údajov</a></li>
+            <li><a href="obchodne-podmienky.php">Všeobecné obchodné podmienky</a></li>
+            <li><a href="https://techessence.sk/wp-content/uploads/2024/02/Reklamacny-formular.pdf" target="_blank" rel="noopener">Reklamačný formulár</a></li>
+            <li><a href="https://techessence.sk/wp-content/uploads/2024/02/Odstupenie-od-zmluvy.pdf" target="_blank" rel="noopener">Odstúpenie od zmluvy</a></li>
+            <li><a href="https://techessence.sk/wp-content/uploads/2024/02/Navrh-na-zacatie-alternativneho-riesenia-sporu.pdf" target="_blank" rel="noopener">Alternatívne riešenie sporov</a></li>
           </ul>
         </div>
       </div>
@@ -405,6 +436,6 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
   </div>
 </div>
 
-<script src="assets/js/main.js?v=3" defer></script>
+<script src="assets/js/main.js?v=4" defer></script>
 </body>
 </html>

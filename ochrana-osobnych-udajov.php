@@ -13,7 +13,7 @@ function h(?string $s): string { return htmlspecialchars((string)$s, ENT_QUOTES,
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png">
-<link rel="stylesheet" href="assets/css/style.css?v=1">
+<link rel="stylesheet" href="assets/css/style.css?v=4">
 <style>
 .legal{max-width:820px;margin:0 auto;padding:120px 20px 72px}
 .legal h1{font-size:clamp(1.6rem,5vw,2.2rem);margin-bottom:1.2rem}
@@ -33,10 +33,12 @@ function h(?string $s): string { return htmlspecialchars((string)$s, ENT_QUOTES,
     <a class="nav-brand" href="/" aria-label="Sunset v Raji – domov">
       <img src="assets/img/logo-white.png" alt="Sunset v Raji" width="86" height="60">
     </a>
-    <nav class="nav-links" aria-label="Hlavná navigácia" id="navLinks" style="display:flex">
-      <a href="/#program">Program</a>
+    <nav class="nav-links nav-simple" aria-label="Hlavná navigácia">
+      <a href="/#den">Program</a>
+      <a href="/#lineup">Lineup</a>
       <a href="/#galeria">Galéria</a>
-      <a href="/#miesto">Miesto</a>
+      <a href="/#informacie">Info</a>
+      <a href="/#kontakt">Kontakt</a>
     </nav>
   </div>
 </header>
@@ -135,7 +137,7 @@ Korešpondenčná adresa: <strong>Ottlýkovská 396/36, 013 14 Kamenná Poruba</
 <footer class="footer">
   <div class="wrap footer-inner">
     <p>© <?= date('Y') ?> Sunset v Raji</p>
-    <p class="footer-social"><a href="/">Domov</a></p>
+    <p class="footer-social"><a href="/">Domov</a><a href="obchodne-podmienky.php">Obchodné podmienky</a></p>
   </div>
 </footer>
 </body>
