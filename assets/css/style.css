@@ -252,7 +252,7 @@ h4{font-size:1.05rem;margin-bottom:.35rem}
 .sponsors-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:30px 44px;max-width:880px;margin-left:auto;margin-right:auto}
 .sponsors-row img{height:34px;width:auto;opacity:.85;transition:opacity .2s ease}
 .sponsors-row img:hover{opacity:1}
-.sponsors-row img.sp-lg{height:74px}
+.sponsors-row img.sp-lg{height:120px}
 .foot-area{margin-top:48px}
 .foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:28px;max-width:920px;padding-top:36px;border-top:1px solid rgba(255,255,255,.12)}
 .foot-grid h4{color:#fff;font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:.7rem}
@@ -338,7 +338,7 @@ body.legal-page{background:#fff}
   .finale-cta{padding:72px 20px 20px}
   .sponsors-row{gap:18px 24px}
   .sponsors-row img{height:26px}
-  .sponsors-row img.sp-lg{height:54px}
+  .sponsors-row img.sp-lg{height:84px}
   .cookiebar{flex-direction:column;align-items:stretch;text-align:center;left:10px;right:10px;bottom:10px}
   .cookiebar-btns{justify-content:center}
   .to-top{right:12px;bottom:12px;width:46px;height:46px}
