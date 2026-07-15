@@ -237,6 +237,7 @@ $baseUrl = 'https://sunsetvraji.sk/';
     <p class="footer-social">
       <?php if (!empty($site['instagram'])): ?><a href="<?= h($site['instagram']) ?>" target="_blank" rel="noopener">Instagram</a><?php endif; ?>
       <?php if (!empty($site['facebook_event'])): ?><a href="<?= h($site['facebook_event']) ?>" target="_blank" rel="noopener">Facebook</a><?php endif; ?>
+      <a href="ochrana-osobnych-udajov.php">Ochrana osobných údajov</a>
     </p>
   </div>
 </footer>
@@ -251,7 +252,7 @@ $baseUrl = 'https://sunsetvraji.sk/';
 </div>
 
 <div class="cookiebar" id="cookiebar" hidden>
-  <p>Používame cookies na meranie návštevnosti a účinnosti reklamy (Meta Pixel, analytika). Nevyhnutné cookies fungujú vždy.</p>
+  <p>Používame cookies na meranie návštevnosti a účinnosti reklamy (Meta Pixel, analytika). Nevyhnutné cookies fungujú vždy. <a href="ochrana-osobnych-udajov.php">Viac informácií</a></p>
   <div class="cookiebar-btns">
     <button class="btn btn-primary btn-sm" id="ckAll" type="button">Súhlasím</button>
     <button class="btn btn-ghost btn-sm" id="ckNec" type="button">Iba nevyhnutné</button>
