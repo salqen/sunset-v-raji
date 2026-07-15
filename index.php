@@ -43,7 +43,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="preload" href="assets/fonts/Montserrat-var-sk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Montserrat-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/hero.webp" media="(min-width: 641px)" fetchpriority="high">
 <link rel="preload" as="image" href="assets/img/hero-mobile.webp" media="(max-width: 640px)" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/style.css?v=<?= h($assetV) ?>">
