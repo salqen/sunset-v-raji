@@ -56,3 +56,15 @@ input[type=file]{font-size:.85rem;margin-top:4px}
   .rowact{grid-template-columns:44px 70px 1fr 36px}
   .rowact input[name="act[desc][]"],.rowact input[type=file]{grid-column:1/5}
 }
+
+.stat-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:6px 0 20px}
+.stat-cards div{background:#faf6ee;border:1px solid #f1e5cd;border-radius:10px;padding:14px;text-align:center}
+.stat-cards strong{display:block;font-size:1.5rem;color:#d97f00}
+.stat-cards span{font-size:.78rem;color:#7a6a52;text-transform:uppercase;letter-spacing:.05em}
+.stat-table{width:100%;border-collapse:collapse;font-size:.9rem}
+.stat-table th{text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:#7a6a52;padding:6px 8px;border-bottom:2px solid #f1e5cd}
+.stat-table td{padding:7px 8px;border-bottom:1px solid #f5eddd}
+.stat-table em{color:#b09660;font-style:normal;font-size:.8rem}
+.stat-bar{width:38%}
+.stat-bar span{display:block;height:12px;background:linear-gradient(90deg,#fb9600,#ffb84d);border-radius:6px;min-width:2px}
+@media (max-width:720px){.stat-cards{grid-template-columns:1fr 1fr}.stat-bar{display:none}}

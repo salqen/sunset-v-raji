@@ -288,6 +288,7 @@ if ($action === 'password') {
   <button type="button" data-tab="galeria">Galéria</button>
   <button type="button" data-tab="miesto">Miesto</button>
   <button type="button" data-tab="nastavenia">Nastavenia</button>
+  <button type="button" data-tab="navstevnost">Návštevnosť</button>
 </nav>
 
 <section class="tab on" id="tab-zaklad">
@@ -481,6 +482,43 @@ if ($action === 'password') {
   <label>Meta Pixel ID <input name="set_pixel" value="<?= h($c['site']['meta_pixel_id']) ?>" placeholder="Len číslo, napr. 1234567890"></label>
   <label>Google Analytics ID <input name="set_ga" value="<?= h($c['site']['ga_id']) ?>" placeholder="G-XXXXXXX"></label>
   <p class="hint">Meranie sa načíta až po súhlase návštevníka s cookies.</p>
+</section>
+
+<section class="tab" id="tab-navstevnost">
+  <h2>Návštevnosť webu</h2>
+  <?php
+  $stats = json_decode((string)@file_get_contents($ROOT . '/data/stats.json'), true);
+  $days = is_array($stats['days'] ?? null) ? $stats['days'] : [];
+  krsort($days);
+  $last30 = array_slice($days, 0, 30, true);
+  $tv = array_sum(array_column($days, 'v'));
+  $tu = array_sum(array_column($days, 'u'));
+  $v7 = array_sum(array_column(array_slice($days, 0, 7, true), 'v'));
+  $u7 = array_sum(array_column(array_slice($days, 0, 7, true), 'u'));
+  $max = max(array_merge([1], array_values(array_map(fn($x) => (int)$x['v'], $last30))));
+  ?>
+  <?php if (!$days): ?>
+  <p class="hint">Zatiaľ žiadne dáta – počítadlo začne zbierať návštevy po nasadení tejto verzie webu.</p>
+  <?php else: ?>
+  <div class="stat-cards">
+    <div><strong><?= number_format($tv, 0, ',', ' ') ?></strong><span>zobrazení celkom</span></div>
+    <div><strong><?= number_format($tu, 0, ',', ' ') ?></strong><span>návštevníkov celkom</span></div>
+    <div><strong><?= number_format($v7, 0, ',', ' ') ?></strong><span>zobrazení za 7 dní</span></div>
+    <div><strong><?= number_format($u7, 0, ',', ' ') ?></strong><span>návštevníkov za 7 dní</span></div>
+  </div>
+  <table class="stat-table">
+    <tr><th>Deň</th><th></th><th style="text-align:right">Zobrazenia</th><th style="text-align:right">Návštevníci</th></tr>
+    <?php foreach ($last30 as $day => $x): ?>
+    <tr>
+      <td><?= h(date('j. n. Y', strtotime($day))) ?><?= $day === date('Y-m-d') ? ' <em>(dnes)</em>' : '' ?></td>
+      <td class="stat-bar"><span style="width:<?= (int)round($x['v'] / $max * 100) ?>%"></span></td>
+      <td style="text-align:right"><?= (int)$x['v'] ?></td>
+      <td style="text-align:right"><?= (int)$x['u'] ?></td>
+    </tr>
+    <?php endforeach; ?>
+  </table>
+  <p class="hint">Anonymné serverové počítadlo (bez cookies) – nezachytáva roboty. Návštevník = unikátne zariadenie v rámci dňa. Podrobnejšie dáta uvidíš v Meta Pixel / Google Analytics, tie ale merajú len návštevy so súhlasom cookies.</p>
+  <?php endif; ?>
 </section>
 
 <div class="savebar"><button type="submit" class="save">Uložiť zmeny</button></div>

@@ -9,6 +9,7 @@ $site = $c['site']; $hero = $c['hero']; $info = $c['info']; $place = $c['place']
 $heroVideoMobile = is_file(__DIR__ . '/assets/video/hero-mobile.mp4') ? 'assets/video/hero-mobile.mp4' : null;
 $finaleVideoMobile = is_file(__DIR__ . '/assets/video/finale-mobile.mp4') ? 'assets/video/finale-mobile.mp4' : null;
 $baseUrl = 'https://sunsetvraji.sk/';
+require __DIR__ . '/data/stats-track.php';
 $assetV = trim((string)@file_get_contents(__DIR__ . '/data/asset-version.txt'));
 if ($assetV === '') { $assetV = '10'; }
 $priceParts = array_map('trim', explode(':', (string)($c['party']['price_label'] ?? ''), 2));
@@ -46,6 +47,9 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 <link rel="preload" href="assets/fonts/Montserrat-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/hero.webp" media="(min-width: 641px)" fetchpriority="high">
 <link rel="preload" as="image" href="assets/img/hero-mobile.webp" media="(max-width: 640px)" fetchpriority="high">
+<?php if ($heroVideoMobile): ?>
+<link rel="preload" as="video" href="<?= h($heroVideoMobile) ?>" type="video/mp4" media="(max-width: 768px)">
+<?php endif; ?>
 <link rel="stylesheet" href="assets/css/style.css?v=<?= h($assetV) ?>">
 <script type="application/ld+json">
 <?= json_encode([
@@ -94,7 +98,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
       <img class="hero-photo" src="assets/img/hero.webp" alt="" fetchpriority="high">
     </picture>
     <?php if ($heroVideoMobile): ?>
-    <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/hero-mobile.webp" data-src-mobile="<?= h($heroVideoMobile) ?>?v=<?= h($assetV) ?>"></video>
+    <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/hero-mobile.webp" data-src-mobile="<?= h($heroVideoMobile) ?>"></video>
     <?php endif; ?>
     <div class="hero-shade"></div>
   </div>
@@ -353,7 +357,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
   <div class="finale-bg" aria-hidden="true">
     <img src="assets/img/bg/finale.webp" alt="" loading="lazy" decoding="async">
     <?php if ($finaleVideoMobile): ?>
-    <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/bg/finale.webp" data-src-mobile="<?= h($finaleVideoMobile) ?>?v=<?= h($assetV) ?>"></video>
+    <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/bg/finale.webp" data-src-mobile="<?= h($finaleVideoMobile) ?>"></video>
     <?php endif; ?>
   </div>
   <div class="finale-shade" aria-hidden="true"></div>
