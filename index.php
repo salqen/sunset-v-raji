@@ -225,7 +225,6 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
   <div class="night-bg" aria-hidden="true"><img src="assets/img/sekcie/lineup.jpg" alt="" loading="lazy" decoding="async"></div>
   <div class="wrap night-content">
     <div class="center">
-      <p class="eyebrow script light-script">Keď zapadne slnko</p>
       <h2>Lineup</h2>
       <p class="lead light-p"><?= h($c['lineup_intro'] ?? '') ?></p>
     </div>
