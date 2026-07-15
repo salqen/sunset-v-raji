@@ -164,13 +164,22 @@
       v.src = v.dataset.srcMobile;
       v.muted = true;
       v.loop = true;
-      var p = v.play();
-      var show = function () { v.classList.add('playing'); };
-      if (p && p.then) { p.then(show).catch(function () {}); } else { v.addEventListener('playing', show); }
+      v.setAttribute('loop', '');
+      var play = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+      v.addEventListener('playing', function () { v.classList.add('playing'); });
+      v.addEventListener('ended', play);   // poistka, keby loop zlyhal
+      v.addEventListener('pause', function () { if (!document.hidden) setTimeout(play, 150); });
+      play();
     });
   }
   initBgVideos();
   mqMobile.addEventListener ? mqMobile.addEventListener('change', initBgVideos) : mqMobile.addListener(initBgVideos);
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) return;
+    Array.prototype.forEach.call(document.querySelectorAll('video[data-src-mobile]'), function (v) {
+      if (v.dataset.loaded && v.paused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    });
+  });
 
   /* ---------- parallax ---------- */
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

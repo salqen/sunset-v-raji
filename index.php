@@ -42,7 +42,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preload" href="assets/fonts/Montserrat-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css?v=4">
+<link rel="stylesheet" href="assets/css/style.css?v=7">
 <script type="application/ld+json">
 <?= json_encode([
   '@context' => 'https://schema.org',
@@ -110,8 +110,8 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- NOVÝ DOMOV SUNSETU -->
 <section class="section parallax-sec" id="domov">
-  <div class="parallax-bg" data-parallax aria-hidden="true"><img src="assets/img/bg/domov.jpg" alt="" loading="lazy" decoding="async"></div>
-  <div class="parallax-shade shade-warm" aria-hidden="true"></div>
+  <div class="parallax-bg" aria-hidden="true"><img src="assets/img/bg/domov.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="parallax-shade shade-solid-blue" aria-hidden="true"></div>
   <div class="wrap narrow center parallax-content">
     <p class="eyebrow script light-script"><?= h($c['about']['eyebrow']) ?></p>
     <h2 class="light"><?= h($c['about']['heading']) ?></h2>
@@ -168,7 +168,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- CHILL-OUT ZÓNA -->
 <section class="section parallax-sec" id="chill">
-  <div class="parallax-bg" data-parallax aria-hidden="true"><img src="assets/img/bg/chill.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="parallax-bg" aria-hidden="true"><img src="assets/img/bg/chill.jpg" alt="" loading="lazy" decoding="async"></div>
   <div class="parallax-shade" aria-hidden="true"></div>
   <div class="wrap narrow center parallax-content">
     <p class="eyebrow script light-script"><?= h($c['chillout']['eyebrow']) ?></p>
@@ -204,8 +204,8 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- PÁRTY POD HVIEZDAMI -->
 <section class="section parallax-sec" id="party">
-  <div class="parallax-bg" data-parallax aria-hidden="true"><img src="assets/img/bg/party.jpg" alt="" loading="lazy" decoding="async"></div>
-  <div class="parallax-shade shade-dark" aria-hidden="true"></div>
+  <div class="parallax-bg" aria-hidden="true"><img src="assets/img/bg/party.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="parallax-shade shade-solid-sunset" aria-hidden="true"></div>
   <div class="wrap narrow center parallax-content">
     <p class="eyebrow script light-script"><?= h($c['party']['eyebrow']) ?></p>
     <h2 class="light"><?= h($c['party']['heading']) ?></h2>
@@ -280,7 +280,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- PRAKTICKÉ INFORMÁCIE -->
 <section class="section parallax-sec" id="informacie">
-  <div class="parallax-bg" data-parallax aria-hidden="true"><img src="assets/img/bg/info.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="parallax-bg" aria-hidden="true"><img src="assets/img/bg/info.jpg" alt="" loading="lazy" decoding="async"></div>
   <div class="parallax-shade shade-dark" aria-hidden="true"></div>
   <div class="wrap parallax-content">
     <div class="center">
@@ -347,7 +347,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- FINALE + FOOTER (spoločné pozadie) -->
 <div class="finale">
-  <div class="finale-bg" data-parallax aria-hidden="true">
+  <div class="finale-bg" aria-hidden="true">
     <img src="assets/img/bg/finale.jpg" alt="" loading="lazy" decoding="async">
     <?php if ($finaleVideoMobile): ?>
     <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/bg/finale.jpg" data-src-mobile="<?= h($finaleVideoMobile) ?>"></video>
@@ -436,6 +436,6 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
   </div>
 </div>
 
-<script src="assets/js/main.js?v=4" defer></script>
+<script src="assets/js/main.js?v=5" defer></script>
 </body>
 </html>
