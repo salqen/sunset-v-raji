@@ -183,16 +183,18 @@
 
   /* ---------- parallax ---------- */
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var desktopPointer = window.matchMedia('(min-width: 769px) and (hover: hover)');
   var pxEls = Array.prototype.slice.call(document.querySelectorAll('[data-parallax] img'));
   var ticking = false;
   function parallax() {
     ticking = false;
+    if (!desktopPointer.matches) return;
     var vh = window.innerHeight;
     pxEls.forEach(function (img) {
       var rect = img.parentNode.getBoundingClientRect();
       if (rect.bottom < 0 || rect.top > vh) return;
       var center = rect.top + rect.height / 2 - vh / 2;
-      img.style.transform = 'translateY(' + (center * -0.12).toFixed(1) + 'px)';
+      img.style.transform = 'translate3d(0,' + (center * -0.1).toFixed(1) + 'px,0)';
     });
   }
   function requestParallax() {

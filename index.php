@@ -118,7 +118,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- NOVÝ DOMOV SUNSETU -->
 <section class="section parallax-sec" id="domov">
-  <div class="parallax-bg" aria-hidden="true"><img src="uploads/gallery/den-vyhlad.webp" alt="" loading="lazy" decoding="async"></div>
+  <div class="parallax-bg" data-parallax aria-hidden="true"><img src="uploads/gallery/den-vyhlad.webp" alt="" loading="lazy" decoding="async"></div>
   <div class="parallax-shade shade-solid-blue" aria-hidden="true"></div>
   <div class="wrap narrow center parallax-content">
     <p class="eyebrow script light-script"><?= h($c['about']['eyebrow']) ?></p>
@@ -176,7 +176,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- CHILL-OUT ZÓNA -->
 <section class="section parallax-sec" id="chill">
-  <div class="parallax-bg" aria-hidden="true"><img src="assets/img/bg/chill.webp" alt="" loading="lazy" decoding="async"></div>
+  <div class="parallax-bg" data-parallax aria-hidden="true"><img src="assets/img/bg/chill.webp" alt="" loading="lazy" decoding="async"></div>
   <div class="parallax-shade" aria-hidden="true"></div>
   <div class="wrap narrow center parallax-content">
     <p class="eyebrow script light-script"><?= h($c['chillout']['eyebrow']) ?></p>
@@ -212,7 +212,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- PÁRTY POD HVIEZDAMI -->
 <section class="section parallax-sec" id="party">
-  <div class="parallax-bg" aria-hidden="true"><img src="assets/img/bg/party.webp" alt="" loading="lazy" decoding="async"></div>
+  <div class="parallax-bg" data-parallax aria-hidden="true"><img src="assets/img/bg/party.webp" alt="" loading="lazy" decoding="async"></div>
   <div class="parallax-shade shade-solid-sunset" aria-hidden="true"></div>
   <div class="wrap narrow center parallax-content">
     <p class="eyebrow script light-script"><?= h($c['party']['eyebrow']) ?></p>
@@ -287,7 +287,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- PRAKTICKÉ INFORMÁCIE -->
 <section class="section parallax-sec" id="informacie">
-  <div class="parallax-bg" aria-hidden="true"><img src="assets/img/bg/info.webp" alt="" loading="lazy" decoding="async"></div>
+  <div class="parallax-bg" data-parallax aria-hidden="true"><img src="assets/img/bg/info.webp" alt="" loading="lazy" decoding="async"></div>
   <div class="parallax-shade shade-dark" aria-hidden="true"></div>
   <div class="wrap parallax-content">
     <div class="center">
@@ -354,7 +354,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- FINALE + FOOTER (spoločné pozadie) -->
 <div class="finale">
-  <div class="finale-bg" aria-hidden="true">
+  <div class="finale-bg" data-parallax aria-hidden="true">
     <img src="assets/img/bg/finale.webp" alt="" loading="lazy" decoding="async">
     <?php if ($finaleVideoMobile): ?>
     <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/bg/finale.webp" data-src-mobile="<?= h($finaleVideoMobile) ?>"></video>
