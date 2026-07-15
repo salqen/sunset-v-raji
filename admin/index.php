@@ -8,6 +8,7 @@ $CONTENT = $ROOT . '/data/content.json';
 $CONFIG = $ROOT . '/data/config.php';
 $UP_GALLERY = $ROOT . '/uploads/gallery';
 $UP_LINEUP = $ROOT . '/uploads/lineup';
+$UP_ACT = $ROOT . '/uploads/activities';
 
 $config = require $CONFIG;
 function h(?string $s): string { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
@@ -140,7 +141,26 @@ if ($action === 'save') {
     $c['program_day'] = rows_field('pday', ['time', 'title', 'desc']);
     $c['program_night'] = rows_field('pnight', ['time', 'title', 'desc']);
     $c['program_note'] = str_field('program_note');
-    $c['day_activities'] = array_values(array_filter(array_map('trim', explode("\n", (string)($_POST['day_activities'] ?? '')))));
+    // atrakcie (fotky spracujeme pred filtrovaním prázdnych riadkov)
+    $activities = [];
+    $actNames = $_POST['act']['title'] ?? [];
+    if (is_array($actNames)) {
+        foreach (array_keys($actNames) as $i) {
+            $a = [
+                'icon'  => trim((string)($_POST['act']['icon'][$i] ?? '')),
+                'title' => trim((string)($_POST['act']['title'][$i] ?? '')),
+                'desc'  => trim((string)($_POST['act']['desc'][$i] ?? '')),
+                'photo' => trim((string)($_POST['act']['photo'][$i] ?? '')),
+            ];
+            if (isset($_FILES['act_photo']['error'][$i]) && $_FILES['act_photo']['error'][$i] === UPLOAD_ERR_OK) {
+                $f = ['tmp_name' => $_FILES['act_photo']['tmp_name'][$i], 'error' => $_FILES['act_photo']['error'][$i], 'size' => $_FILES['act_photo']['size'][$i]];
+                $up = handleUpload($f, $UP_ACT, 'akt', 900);
+                if ($up) $a['photo'] = 'uploads/activities/' . $up['src'];
+            }
+            if ($a['title'] !== '') $activities[] = $a;
+        }
+    }
+    $c['activities'] = $activities;
     // lineup (existujúce fotky sa posielajú v hidden poli; fotky spracujeme pred filtrovaním prázdnych riadkov)
     $lineup = [];
     $names = $_POST['lineup']['name'] ?? [];
@@ -169,6 +189,8 @@ if ($action === 'save') {
     $c['place']['maps_embed_q'] = str_field('place_maps_q');
     // nastavenia
     $c['site']['facebook_event'] = str_field('set_fb');
+    $c['site']['contact_email'] = str_field('set_email');
+    $c['site']['support_email'] = str_field('set_support');
     $c['site']['instagram'] = str_field('set_ig');
     $c['site']['meta_pixel_id'] = str_field('set_pixel');
     $c['site']['ga_id'] = str_field('set_ga');
@@ -294,7 +316,23 @@ if ($action === 'password') {
   <button type="button" class="add" data-add="pnight">+ Pridať bod</button>
 
   <label style="margin-top:18px">Poznámka pod programom <input name="program_note" value="<?= h($c['program_note']) ?>"></label>
-  <label>Denné aktivity (každá na nový riadok) <textarea name="day_activities" rows="7"><?= h(implode("\n", $c['day_activities'])) ?></textarea></label>
+
+  <h2>Atrakcie a aktivity</h2>
+  <p class="hint">Fotka je nepovinná – bez fotky sa zobrazí ikona. Odporúčaný formát: na šírku (3:2), min. 900 px.</p>
+  <div class="rows" data-rows="act">
+    <?php foreach (($c['activities'] ?? []) as $a): ?>
+    <div class="rowact">
+      <?php if (!empty($a['photo'])): ?><img class="actprev" src="../<?= h($a['photo']) ?>" alt=""><?php else: ?><span class="actprev actempty"><?= h($a['icon'] ?: '✨') ?></span><?php endif; ?>
+      <input name="act[icon][]" placeholder="Ikona (emoji)" value="<?= h($a['icon'] ?? '') ?>" class="short">
+      <input name="act[title][]" placeholder="Názov atrakcie" value="<?= h($a['title']) ?>">
+      <input name="act[desc][]" placeholder="Krátky popis" value="<?= h($a['desc']) ?>">
+      <input type="hidden" name="act[photo][]" value="<?= h($a['photo']) ?>">
+      <input type="file" name="act_photo[]" accept="image/*">
+      <button type="button" class="del" title="Odstrániť">×</button>
+    </div>
+    <?php endforeach; ?>
+  </div>
+  <button type="button" class="add" data-add="act">+ Pridať atrakciu</button>
 </section>
 
 <section class="tab" id="tab-lineup">
@@ -348,6 +386,10 @@ if ($action === 'password') {
 
 <section class="tab" id="tab-nastavenia">
   <h2>Odkazy a meranie</h2>
+  <div class="cols">
+    <label>Kontaktný e-mail (formulár + web) <input name="set_email" value="<?= h($c['site']['contact_email'] ?? '') ?>" placeholder="info@sunsetvraji.sk"></label>
+    <label>Support e-mail (len informačný) <input name="set_support" value="<?= h($c['site']['support_email'] ?? '') ?>" placeholder="support@sunsetvraji.sk"></label>
+  </div>
   <label>Facebook udalosť (URL) <input name="set_fb" value="<?= h($c['site']['facebook_event']) ?>" placeholder="https://www.facebook.com/events/..."></label>
   <label>Instagram (URL) <input name="set_ig" value="<?= h($c['site']['instagram']) ?>" placeholder="https://www.instagram.com/..."></label>
   <label>Meta Pixel ID <input name="set_pixel" value="<?= h($c['site']['meta_pixel_id']) ?>" placeholder="Len číslo, napr. 1234567890"></label>

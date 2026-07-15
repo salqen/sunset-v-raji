@@ -7,6 +7,8 @@ Postavený pre klasický **Websupport hosting** (Apache + PHP 8), bez databázy.
 
 ```
 index.php            hlavná stránka (obsah sa načítava z data/content.json)
+gallery.php          AJAX endpoint – donačítanie ďalších fotiek galérie
+kontakt.php          spracovanie kontaktného formulára (PHP mail())
 admin/               administrácia obsahu (heslo, pozri nižšie)
 data/content.json    všetok obsah webu (texty, program, lineup, galéria)
 data/config.php      hash hesla do administrácie
@@ -25,13 +27,20 @@ uploads/             fotky nahrané cez administráciu
 
 - URL: `https://sunsetvraji.sk/admin/`
 - Predvolené heslo: `SunsetRaji2026!` — **po prvom prihlásení ho zmeň** (sekcia Zmena hesla).
-- Dá sa upravovať: texty, info karty, denný/večerný program, denné aktivity, lineup (vrátane fotiek DJ-ov), galéria (upload, mazanie, poradie, alt popisy), miesto/parkovanie, odkazy (FB event, Instagram), Meta Pixel ID a Google Analytics ID.
+- Dá sa upravovať: texty, info karty, denný/večerný program, atrakcie (ikona, popis, fotka), lineup (vrátane fotiek DJ-ov), galéria (upload, mazanie, poradie, alt popisy), miesto/parkovanie, kontaktné e-maily, odkazy (FB event, Instagram), Meta Pixel ID a Google Analytics ID.
 - Fotky sa pri uploade automaticky zmenšia a zoptimalizujú (galéria max 1600 px + náhľad, DJ fotky max 600 px).
 
 ## Hero video
 
 Do `assets/video/` nahraj `hero.webm` (a ideálne aj `hero.mp4` pre Safari/iOS).
 Web ho automaticky použije namiesto statickej grafiky. Odporúčanie: 10–20 s slučka bez zvuku, 1280×720, max ~4–6 MB. Kým video nie je nahrané, zobrazuje sa grafika zo západu slnka.
+
+## Kontaktný formulár
+
+- Formulár v sekcii Kontakt odosiela správy cez PHP `mail()` na adresu nastavenú v administrácii (predvolene `info@sunsetvraji.sk` – schránka musí existovať vo Websupport mailhostingu, čo už je splnené).
+- `support@sunsetvraji.sk` je na webe uvedený len informačne (podpora eventu), formulár naň nechodí.
+- Antispam: honeypot pole + časová kontrola, ochrana proti header injection.
+- Galéria zobrazuje prvých 8 fotiek; ďalšie sa donačítajú tlačidlom cez `gallery.php` (AJAX) – tlačidlo sa zobrazí automaticky, keď je v galérii viac ako 8 fotiek.
 
 ## Meranie a cookies
 

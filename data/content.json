@@ -6,10 +6,12 @@
     "facebook_event": "",
     "instagram": "",
     "meta_pixel_id": "",
-    "ga_id": ""
+    "ga_id": "",
+    "contact_email": "info@sunsetvraji.sk",
+    "support_email": "support@sunsetvraji.sk"
   },
   "hero": {
-    "date_line": "1 / 8 / 2026",
+    "date_line": "1/8/2026",
     "place_line": "Lúka nad Kamennou Porubou",
     "sub_line": "Denný program pre rodiny a večerná elektronická párty"
   },
@@ -23,21 +25,6 @@
     "place": "lúka nad Kamennou Porubou",
     "entry": "voľný vstup"
   },
-  "day_activities": [
-    "Stánky s jedlom",
-    "Jazda na koni",
-    "Autíčka a štvorkolky",
-    "Skákacie hrady",
-    "Futbalové ihrisko",
-    "Tvorivé dielne",
-    "Vodné fajky",
-    "Maľovanie na tvár",
-    "Tatér",
-    "Barber",
-    "Šermiari",
-    "Pilates",
-    "Shuffle workshop"
-  ],
   "program_day": [
     {
       "time": "14:00",
@@ -145,5 +132,85 @@
     "arrival": "Trasa z obce bude značená. Odporúčame prísť s predstihom.",
     "maps_url": "https://www.google.com/maps/search/?api=1&query=Kamenn%C3%A1+Poruba%2C+okres+%C5%BDilina",
     "maps_embed_q": "Kamenná Poruba, okres Žilina"
-  }
+  },
+  "activities": [
+    {
+      "icon": "🍔",
+      "title": "Stánky s jedlom",
+      "desc": "Lokálne jedlo a pitie počas celého dňa.",
+      "photo": ""
+    },
+    {
+      "icon": "🐴",
+      "title": "Jazda na koni",
+      "desc": "Vyhliadkové jazdy pre deti aj dospelých.",
+      "photo": ""
+    },
+    {
+      "icon": "🏎️",
+      "title": "Autíčka a štvorkolky",
+      "desc": "Motorizovaná zábava pre najmenších.",
+      "photo": ""
+    },
+    {
+      "icon": "🏰",
+      "title": "Skákacie hrady",
+      "desc": "Vyšantenie pre deti celé popoludnie.",
+      "photo": ""
+    },
+    {
+      "icon": "⚽",
+      "title": "Futbalové ihrisko",
+      "desc": "Priestor na futbal a loptové hry.",
+      "photo": ""
+    },
+    {
+      "icon": "🎨",
+      "title": "Tvorivé dielne",
+      "desc": "Kreatívne aktivity pre deti aj rodičov.",
+      "photo": ""
+    },
+    {
+      "icon": "💨",
+      "title": "Vodné fajky",
+      "desc": "Chill zóna s vodnými fajkami.",
+      "photo": ""
+    },
+    {
+      "icon": "🖌️",
+      "title": "Maľovanie na tvár",
+      "desc": "Farebné premeny pre deti.",
+      "photo": ""
+    },
+    {
+      "icon": "🖋️",
+      "title": "Tatér",
+      "desc": "Tetovanie priamo na mieste.",
+      "photo": ""
+    },
+    {
+      "icon": "💈",
+      "title": "Barber",
+      "desc": "Strih a úprava brady pod holým nebom.",
+      "photo": ""
+    },
+    {
+      "icon": "⚔️",
+      "title": "Šermiari",
+      "desc": "Ukážky historického šermu.",
+      "photo": ""
+    },
+    {
+      "icon": "🧘",
+      "title": "Pilates",
+      "desc": "Cvičenie na lúke pri západe slnka.",
+      "photo": ""
+    },
+    {
+      "icon": "🕺",
+      "title": "Shuffle workshop",
+      "desc": "Nauč sa shuffle kroky priamo na mieste.",
+      "photo": ""
+    }
+  ]
 }

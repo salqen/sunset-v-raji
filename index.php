@@ -9,6 +9,11 @@ $site = $c['site']; $hero = $c['hero']; $info = $c['info']; $place = $c['place']
 $heroVideo = is_file(__DIR__ . '/assets/video/hero.webm') ? 'assets/video/hero.webm' : null;
 $heroVideoMp4 = is_file(__DIR__ . '/assets/video/hero.mp4') ? 'assets/video/hero.mp4' : null;
 $baseUrl = 'https://sunsetvraji.sk/';
+$galleryAll = $c['gallery'] ?? [];
+$galleryFirst = array_slice($galleryAll, 0, 8);
+$galleryHasMore = count($galleryAll) > 8;
+// dátum: farebné lomky ako na plagáte
+$heroDateHtml = str_replace('/', '<span class="sl">/</span>', h($hero['date_line']));
 ?>
 <!DOCTYPE html>
 <html lang="sk">
@@ -33,7 +38,7 @@ $baseUrl = 'https://sunsetvraji.sk/';
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preload" href="assets/fonts/Montserrat-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css?v=1">
+<link rel="stylesheet" href="assets/css/style.css?v=2">
 <script type="application/ld+json">
 <?= json_encode([
   '@context' => 'https://schema.org',
@@ -61,6 +66,7 @@ $baseUrl = 'https://sunsetvraji.sk/';
       <a href="#lineup">Lineup</a>
       <a href="#galeria">Galéria</a>
       <a href="#miesto">Miesto</a>
+      <a href="#kontakt">Kontakt</a>
     </nav>
     <button class="nav-burger" id="navBurger" aria-label="Otvoriť menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
@@ -84,7 +90,7 @@ $baseUrl = 'https://sunsetvraji.sk/';
   </div>
   <div class="hero-content">
     <img class="hero-logo" src="assets/img/logo-white.png" alt="Sunset v Raji" width="360" height="252" fetchpriority="high">
-    <p class="hero-date"><?= h($hero['date_line']) ?></p>
+    <p class="hero-date"><?= $heroDateHtml ?></p>
     <p class="hero-place"><?= h($hero['place_line']) ?></p>
     <p class="hero-sub"><?= h($hero['sub_line']) ?></p>
     <a class="btn btn-primary" href="#o-podujati">Viac informácií</a>
@@ -131,12 +137,6 @@ $baseUrl = 'https://sunsetvraji.sk/';
           <?php endforeach; ?>
         </ul>
         <?php endif; ?>
-        <?php if (!empty($c['day_activities'])): ?>
-        <div class="chips">
-          <?php foreach ($c['day_activities'] as $a): ?><span class="chip"><?= h($a) ?></span><?php endforeach; ?>
-          <span class="chip chip-more">a mnoho ďalšieho</span>
-        </div>
-        <?php endif; ?>
       </div>
       <div class="program-col program-night">
         <h3><span class="moon-dot" aria-hidden="true"></span>Večerný program</h3>
@@ -153,6 +153,34 @@ $baseUrl = 'https://sunsetvraji.sk/';
     <?php if (!empty($c['program_note'])): ?><p class="center muted small"><?= h($c['program_note']) ?></p><?php endif; ?>
   </div>
 </section>
+
+<!-- ATRAKCIE -->
+<?php if (!empty($c['activities'])): ?>
+<section class="section section-cream" id="atrakcie">
+  <div class="wrap">
+    <div class="center">
+      <p class="eyebrow script">Pre deti aj dospelých</p>
+      <h2>Atrakcie a aktivity</h2>
+      <p class="lead narrow">Počas celého popoludnia nájdeš na lúke množstvo aktivít – a mnoho ďalšieho.</p>
+    </div>
+    <div class="act-grid">
+      <?php foreach ($c['activities'] as $a): ?>
+      <div class="act-card">
+        <?php if (!empty($a['photo'])): ?>
+        <img class="act-photo" src="<?= h($a['photo']) ?>" alt="<?= h($a['title']) ?>" loading="lazy" decoding="async">
+        <?php else: ?>
+        <div class="act-photo act-placeholder" aria-hidden="true"><span><?= h($a['icon'] ?? '✨') ?></span></div>
+        <?php endif; ?>
+        <div class="act-body">
+          <h4><?= h($a['title']) ?></h4>
+          <?php if (!empty($a['desc'])): ?><p><?= h($a['desc']) ?></p><?php endif; ?>
+        </div>
+      </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
 
 <!-- LINEUP -->
 <section class="section section-night" id="lineup">
@@ -186,11 +214,14 @@ $baseUrl = 'https://sunsetvraji.sk/';
       <h2>Atmosféra minulých rokov</h2>
     </div>
     <div class="gallery" id="gallery">
-      <?php foreach ($c['gallery'] as $i => $g): ?>
-      <a href="<?= h($g['src']) ?>" class="g-item" data-index="<?= $i ?>">
+      <?php foreach ($galleryFirst as $i => $g): ?>
+      <a href="<?= h($g['src']) ?>" class="g-item">
         <img src="<?= h($g['thumb'] ?: $g['src']) ?>" alt="<?= h($g['alt']) ?>" loading="lazy" decoding="async">
       </a>
       <?php endforeach; ?>
+    </div>
+    <div class="center gallery-more-wrap">
+      <button class="btn btn-ghost<?= $galleryHasMore ? '' : ' hide' ?>" id="galleryMore" type="button" data-offset="8">Zobraziť viac fotiek</button>
     </div>
   </div>
 </section>
@@ -203,9 +234,8 @@ $baseUrl = 'https://sunsetvraji.sk/';
       <h2>Miesto a doprava</h2>
       <p class="lead narrow"><?= h($place['text']) ?></p>
     </div>
-    <div class="map-box" id="mapBox" data-q="<?= h($place['maps_embed_q']) ?>">
-      <button class="btn btn-ghost" id="mapLoad" type="button">Zobraziť mapu</button>
-      <p class="small muted">Kliknutím sa načíta mapa Google. </p>
+    <div class="map-box">
+      <iframe src="https://maps.google.com/maps?q=<?= rawurlencode($place['maps_embed_q']) ?>&t=k&z=14&hl=sk&output=embed" loading="lazy" title="Mapa – miesto podujatia" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <div class="place-grid">
       <div class="place-card"><h4>🅿️ Parkovanie</h4><p><?= h($place['parking']) ?></p></div>
@@ -215,34 +245,90 @@ $baseUrl = 'https://sunsetvraji.sk/';
   </div>
 </section>
 
-<!-- ZÁVEREČNÁ VÝZVA -->
-<section class="section section-sunset center" id="cta">
-  <div class="wrap narrow">
-    <img class="cta-logo" src="assets/img/logo-white.png" alt="" width="220" height="154" loading="lazy">
-    <h2 class="light">Vidíme sa 1. augusta<br>na lúke nad Kamennou Porubou.</h2>
-    <div class="cta-buttons">
-      <a class="btn btn-light" href="<?= h($place['maps_url']) ?>" target="_blank" rel="noopener">Otvoriť miesto v mapách</a>
-      <?php if (!empty($site['facebook_event'])): ?>
-      <a class="btn btn-outline" href="<?= h($site['facebook_event']) ?>" target="_blank" rel="noopener">Sledovať udalosť na Facebooku</a>
-      <?php endif; ?>
+<!-- KONTAKT -->
+<section class="section section-cream" id="kontakt">
+  <div class="wrap contact-wrap">
+    <div class="contact-info">
+      <p class="eyebrow script">Chceš sa niečo opýtať?</p>
+      <h2>Napíš nám</h2>
+      <p>Ozvi sa nám s čímkoľvek – otázky k programu, spolupráca, stánky alebo len tak.</p>
+      <ul class="contact-mails">
+        <li><span>Všeobecné otázky</span><a href="mailto:<?= h($site['contact_email']) ?>"><?= h($site['contact_email']) ?></a></li>
+        <li><span>Technická podpora eventu</span><a href="mailto:<?= h($site['support_email']) ?>"><?= h($site['support_email']) ?></a></li>
+      </ul>
     </div>
+    <form class="contact-form" id="contactForm" method="post" action="kontakt.php" novalidate>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="ts" value="<?= time() ?>">
+      <label>Meno<input type="text" name="name" required maxlength="120" autocomplete="name"></label>
+      <label>E-mail<input type="email" name="email" required maxlength="200" autocomplete="email"></label>
+      <label>Správa<textarea name="message" rows="5" required maxlength="5000"></textarea></label>
+      <button class="btn btn-primary" type="submit" id="contactSubmit">Odoslať správu</button>
+      <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
 </main>
 
-<footer class="footer">
-  <div class="wrap footer-inner">
-    <p>© <?= date('Y') ?> Sunset v Raji</p>
-    <p class="footer-social">
-      <?php if (!empty($site['instagram'])): ?><a href="<?= h($site['instagram']) ?>" target="_blank" rel="noopener">Instagram</a><?php endif; ?>
-      <?php if (!empty($site['facebook_event'])): ?><a href="<?= h($site['facebook_event']) ?>" target="_blank" rel="noopener">Facebook</a><?php endif; ?>
-      <a href="ochrana-osobnych-udajov.php">Ochrana osobných údajov</a>
-    </p>
+<!-- FOOTER -->
+<footer class="bigfoot">
+  <svg class="foot-hills" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,90 L0,60 C120,35 260,20 420,38 C560,53 640,28 780,22 C920,16 1040,48 1180,52 C1300,55 1380,40 1440,30 L1440,90 Z" fill="currentColor"/>
+  </svg>
+  <div class="foot-glow" aria-hidden="true"></div>
+  <div class="wrap foot-inner">
+    <div class="foot-cta center">
+      <img class="foot-logo" src="assets/img/logo-white.png" alt="" width="220" height="154" loading="lazy">
+      <p class="foot-script script">Vidíme sa pri západe slnka</p>
+      <p class="foot-date"><?= $heroDateHtml ?></p>
+      <p class="foot-place"><?= h($hero['place_line']) ?></p>
+      <div class="cta-buttons">
+        <a class="btn btn-light" href="<?= h($place['maps_url']) ?>" target="_blank" rel="noopener">Otvoriť miesto v mapách</a>
+        <?php if (!empty($site['facebook_event'])): ?>
+        <a class="btn btn-outline" href="<?= h($site['facebook_event']) ?>" target="_blank" rel="noopener">Sledovať udalosť na Facebooku</a>
+        <?php endif; ?>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div>
+        <h4>Navigácia</h4>
+        <ul>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#lineup">Lineup</a></li>
+          <li><a href="#galeria">Galéria</a></li>
+          <li><a href="#miesto">Miesto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:<?= h($site['contact_email']) ?>"><?= h($site['contact_email']) ?></a></li>
+          <li><a href="mailto:<?= h($site['support_email']) ?>"><?= h($site['support_email']) ?></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sledovať</h4>
+        <ul>
+          <?php if (!empty($site['instagram'])): ?><li><a href="<?= h($site['instagram']) ?>" target="_blank" rel="noopener">Instagram</a></li><?php endif; ?>
+          <?php if (!empty($site['facebook_event'])): ?><li><a href="<?= h($site['facebook_event']) ?>" target="_blank" rel="noopener">Facebook</a></li><?php endif; ?>
+          <li><a href="ochrana-osobnych-udajov.php">Ochrana osobných údajov</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© <?= date('Y') ?> Sunset v Raji · Rajecká dolina</p>
+    </div>
   </div>
 </footer>
 
-<button class="to-top" id="toTop" aria-label="Späť hore">↑</button>
+<button class="to-top" id="toTop" aria-label="Späť hore">
+  <svg class="to-top-ring" viewBox="0 0 48 48" aria-hidden="true">
+    <circle class="ring-bg" cx="24" cy="24" r="21"/>
+    <circle class="ring-fg" cx="24" cy="24" r="21" id="ringFg"/>
+  </svg>
+  <span class="to-top-arrow">↑</span>
+</button>
 
 <div class="lightbox" id="lightbox" hidden>
   <button class="lb-close" id="lbClose" aria-label="Zavrieť">×</button>
@@ -259,6 +345,6 @@ $baseUrl = 'https://sunsetvraji.sk/';
   </div>
 </div>
 
-<script src="assets/js/main.js?v=1" defer></script>
+<script src="assets/js/main.js?v=2" defer></script>
 </body>
 </html>

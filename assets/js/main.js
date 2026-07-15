@@ -9,8 +9,6 @@
   function onScrollNav() {
     nav.classList.toggle('solid', window.scrollY > 40);
   }
-  window.addEventListener('scroll', onScrollNav, { passive: true });
-  onScrollNav();
   burger.addEventListener('click', function () {
     var open = links.classList.toggle('open');
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -22,25 +20,38 @@
     }
   });
 
-  /* ---------- back to top ---------- */
+  /* ---------- back to top + scroll progress ---------- */
   var toTop = document.getElementById('toTop');
-  window.addEventListener('scroll', function () {
+  var ringFg = document.getElementById('ringFg');
+  var RING_LEN = 131.9; // 2 * PI * r(21)
+  function onScroll() {
+    onScrollNav();
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+    ringFg.style.strokeDashoffset = String(RING_LEN * (1 - p));
     toTop.classList.toggle('show', window.scrollY > 700);
-  }, { passive: true });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
   toTop.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  /* ---------- lightbox ---------- */
+  /* ---------- galéria: lightbox + ajax load more ---------- */
   var gallery = document.getElementById('gallery');
   var lb = document.getElementById('lightbox');
   var lbImg = document.getElementById('lbImg');
-  var items = gallery ? Array.prototype.slice.call(gallery.querySelectorAll('.g-item')) : [];
   var idx = 0;
+  function items() {
+    return gallery ? Array.prototype.slice.call(gallery.querySelectorAll('.g-item')) : [];
+  }
   function showLb(i) {
-    idx = (i + items.length) % items.length;
-    lbImg.src = items[idx].getAttribute('href');
-    lbImg.alt = items[idx].querySelector('img').alt || '';
+    var list = items();
+    if (!list.length) return;
+    idx = (i + list.length) % list.length;
+    lbImg.src = list[idx].getAttribute('href');
+    lbImg.alt = list[idx].querySelector('img').alt || '';
     lb.hidden = false;
     document.body.style.overflow = 'hidden';
   }
@@ -54,7 +65,7 @@
       var a = e.target.closest('.g-item');
       if (!a) return;
       e.preventDefault();
-      showLb(parseInt(a.dataset.index, 10));
+      showLb(items().indexOf(a));
     });
     document.getElementById('lbClose').addEventListener('click', hideLb);
     document.getElementById('lbPrev').addEventListener('click', function () { showLb(idx - 1); });
@@ -74,22 +85,68 @@
       if (Math.abs(dx) > 50) showLb(dx > 0 ? idx - 1 : idx + 1);
       touchX = null;
     }, { passive: true });
+
+    var moreBtn = document.getElementById('galleryMore');
+    if (moreBtn) {
+      moreBtn.addEventListener('click', function () {
+        moreBtn.classList.add('loading');
+        var offset = parseInt(moreBtn.dataset.offset, 10) || 0;
+        fetch('gallery.php?offset=' + offset, { headers: { 'Accept': 'application/json' } })
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            (data.items || []).forEach(function (g) {
+              var a = document.createElement('a');
+              a.href = g.src;
+              a.className = 'g-item g-new';
+              var img = document.createElement('img');
+              img.src = g.thumb || g.src;
+              img.alt = g.alt || '';
+              img.loading = 'lazy';
+              img.decoding = 'async';
+              a.appendChild(img);
+              gallery.appendChild(a);
+            });
+            moreBtn.dataset.offset = String(offset + (data.items || []).length);
+            if (!data.hasMore) moreBtn.classList.add('hide');
+          })
+          .catch(function () {})
+          .finally(function () { moreBtn.classList.remove('loading'); });
+      });
+    }
   }
 
-  /* ---------- map on demand ---------- */
-  var mapBox = document.getElementById('mapBox');
-  var mapLoad = document.getElementById('mapLoad');
-  if (mapLoad) {
-    mapLoad.addEventListener('click', function () {
-      var q = encodeURIComponent(mapBox.dataset.q || 'Kamenná Poruba');
-      var f = document.createElement('iframe');
-      f.src = 'https://maps.google.com/maps?q=' + q + '&t=k&z=14&hl=sk&output=embed';
-      f.loading = 'lazy';
-      f.title = 'Mapa – miesto podujatia';
-      f.setAttribute('allowfullscreen', '');
-      f.referrerPolicy = 'no-referrer-when-downgrade';
-      mapBox.innerHTML = '';
-      mapBox.appendChild(f);
+  /* ---------- kontaktný formulár ---------- */
+  var form = document.getElementById('contactForm');
+  if (form) {
+    var status = document.getElementById('formStatus');
+    var submitBtn = document.getElementById('contactSubmit');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      status.textContent = '';
+      status.className = 'form-status';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Odosielam…';
+      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+        .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+        .then(function (res) {
+          if (res.ok && res.data.ok) {
+            status.textContent = 'Ďakujeme, správa bola odoslaná. Ozveme sa čo najskôr.';
+            status.classList.add('ok');
+            form.reset();
+          } else {
+            status.textContent = (res.data && res.data.error) || 'Správu sa nepodarilo odoslať.';
+            status.classList.add('err');
+          }
+        })
+        .catch(function () {
+          status.textContent = 'Správu sa nepodarilo odoslať. Skúste to prosím neskôr.';
+          status.classList.add('err');
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Odoslať správu';
+        });
     });
   }
 
