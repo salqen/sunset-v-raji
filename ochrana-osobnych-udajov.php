@@ -137,7 +137,7 @@ Korešpondenčná adresa: <strong>Ottlýkovská 396/36, 013 14 Kamenná Poruba</
 
 <footer class="footer">
   <div class="wrap footer-inner">
-    <p>© <?= date('Y') ?> Sunset v Raji</p>
+    <p>© <?= date('Y') ?> Sunset v Raji · powered by <a class="powered" href="https://mediavolt.org" target="_blank" rel="noopener" style="color:#c9d6dd;text-decoration:none;font-weight:600">MediaVolt</a></p>
     <p class="footer-social"><a href="/">Domov</a><a href="obchodne-podmienky.php">Obchodné podmienky</a></p>
   </div>
 </footer>

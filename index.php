@@ -414,7 +414,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
         </div>
       </div>
       <div class="foot-bottom">
-        <p>© <?= date('Y') ?> Sunset v Raji · Rajecká dolina</p>
+        <p>© <?= date('Y') ?> Sunset v Raji · Rajecká dolina · powered by <a class="powered" href="https://mediavolt.org" target="_blank" rel="noopener">MediaVolt</a></p>
       </div>
     </footer>
   </div>

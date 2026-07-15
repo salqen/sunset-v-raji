@@ -138,7 +138,7 @@ $assetV = trim((string)@file_get_contents(__DIR__ . '/data/asset-version.txt')) 
 
 <footer class="footer">
   <div class="wrap footer-inner">
-    <p>© <?= date('Y') ?> Sunset v Raji</p>
+    <p>© <?= date('Y') ?> Sunset v Raji · powered by <a class="powered" href="https://mediavolt.org" target="_blank" rel="noopener" style="color:#c9d6dd;text-decoration:none;font-weight:600">MediaVolt</a></p>
     <p class="footer-social"><a href="/">Domov</a><a href="ochrana-osobnych-udajov.php">Ochrana osobných údajov</a></p>
   </div>
 </footer>

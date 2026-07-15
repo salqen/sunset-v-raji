@@ -261,6 +261,8 @@ h4{font-size:1.05rem;margin-bottom:.35rem}
 .foot-grid a{color:#c9d6dd;text-decoration:none;font-size:.92rem}
 .foot-grid a:hover{color:var(--orange)}
 .foot-bottom{text-align:center;padding:28px 0 24px;margin-top:34px;border-top:1px solid rgba(255,255,255,.08);font-size:.84rem;color:#8ba0ae}
+.foot-bottom .powered{color:#c9d6dd;text-decoration:none;font-weight:600}
+.foot-bottom .powered:hover{color:var(--orange)}
 
 /* to top + scroll progress */
 .to-top{position:fixed;right:18px;bottom:18px;z-index:60;width:52px;height:52px;border-radius:50%;border:0;background:var(--orange);color:#fff;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.25);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .25s ease,transform .25s ease;padding:0}
