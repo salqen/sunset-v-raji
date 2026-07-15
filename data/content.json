@@ -77,6 +77,46 @@
   ],
   "gallery": [
     {
+      "src": "uploads/gallery/atmosfera-1.jpg",
+      "thumb": "uploads/gallery/thumb_atmosfera-1.jpg",
+      "alt": "Atmosféra na Sunsete v Raji"
+    },
+    {
+      "src": "uploads/gallery/atmosfera-2.jpg",
+      "thumb": "uploads/gallery/thumb_atmosfera-2.jpg",
+      "alt": "Atmosféra na Sunsete v Raji"
+    },
+    {
+      "src": "uploads/gallery/atmosfera-3.jpg",
+      "thumb": "uploads/gallery/thumb_atmosfera-3.jpg",
+      "alt": "Atmosféra na Sunsete v Raji"
+    },
+    {
+      "src": "uploads/gallery/atmosfera-4.jpg",
+      "thumb": "uploads/gallery/thumb_atmosfera-4.jpg",
+      "alt": "Atmosféra na Sunsete v Raji"
+    },
+    {
+      "src": "uploads/gallery/atmosfera-5.jpg",
+      "thumb": "uploads/gallery/thumb_atmosfera-5.jpg",
+      "alt": "Atmosféra na Sunsete v Raji"
+    },
+    {
+      "src": "uploads/gallery/atmosfera-6.jpg",
+      "thumb": "uploads/gallery/thumb_atmosfera-6.jpg",
+      "alt": "Atmosféra na Sunsete v Raji"
+    },
+    {
+      "src": "uploads/gallery/atmosfera-7.jpg",
+      "thumb": "uploads/gallery/thumb_atmosfera-7.jpg",
+      "alt": "Atmosféra na Sunsete v Raji"
+    },
+    {
+      "src": "uploads/gallery/atmosfera-8.jpg",
+      "thumb": "uploads/gallery/thumb_atmosfera-8.jpg",
+      "alt": "Atmosféra na Sunsete v Raji"
+    },
+    {
       "src": "uploads/gallery/den-auticka.jpg",
       "thumb": "uploads/gallery/thumb_den-auticka.jpg",
       "alt": "Detské autíčka na lúke"
@@ -259,7 +299,7 @@
       "icon": "💈",
       "title": "Barber",
       "desc": "Strih a úprava brady pod holým nebom.",
-      "photo": ""
+      "photo": "uploads/activities/barber.jpg"
     }
   ],
   "day": {
