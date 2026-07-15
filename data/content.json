@@ -1,8 +1,8 @@
 {
   "site": {
     "title": "Sunset v Raji 2026",
-    "description": "Raz do roka ožije celá Rajecká dolina. Sobota 1. augusta 2026, lúka nad Kamennou Porubou. Denný program pre rodiny a večerná elektronická párty pri západe slnka. Vstup voľný.",
-    "claim": "Raz do roka ožije celá Rajecká dolina.",
+    "description": "Sunset v Raji 2026 – 1. augusta od 14:00 na lúke nad Kamennou Porubou. Celodenný program pre deti aj dospelých, výhľad na Rajeckú dolinu, lokálne jedlo a večerná párty pod hviezdami. Nové miesto. Rovnaká atmosféra.",
+    "claim": "Nové miesto. Rovnaká atmosféra.",
     "facebook_event": "",
     "instagram": "",
     "meta_pixel_id": "",
@@ -11,54 +11,27 @@
     "support_email": "support@sunsetvraji.sk"
   },
   "hero": {
-    "date_line": "1/8/2026",
+    "date_line": "1. augusta 2026 od 14:00",
     "place_line": "Lúka nad Kamennou Porubou",
-    "sub_line": "Denný program pre rodiny a večerná elektronická párty"
+    "claim_line": "Nové miesto. Rovnaká atmosféra.",
+    "sub_line": "Celodenný program pre deti aj dospelých, výhľad na Rajeckú dolinu, hudba, lokálne jedlo a večerná párty pod hviezdami."
   },
   "about": {
-    "heading": "Deň v prírode, ktorý sa večer zmení na párty",
-    "text": "Sunset v Raji je jednodňové podujatie v prírode nad Kamennou Porubou. Popoludnie patrí rodinám a deťom – aktivity, stánky s jedlom, tvorivé dielne a šport. So západom slnka sa lúka premení a začína sa večerná elektronická párty pod holým nebom, ktorá trvá do skorého rána."
+    "eyebrow": "Nový domov Sunsetu",
+    "heading": "Po roku sa opäť stretneme. Tentokrát na novom mieste.",
+    "text": "Novým domovom Sunsetu v Raji sa stáva lúka nad Kamennou Porubou s výhľadom na celú Rajeckú dolinu. Čaká nás letný deň v prírode plný hudby, radosti, dobrého jedla, programu pre všetky vekové kategórie a ľudí, ktorí spolu vytvárajú atmosféru Sunsetu.",
+    "text2": "Nie je to iba párty. Je to miesto, kde sa počas jedného dňa stretnú rodiny, priatelia aj milovníci elektronickej hudby.",
+    "motto": "Slnko. Príroda. Hudba. Komunita."
   },
   "info": {
-    "date": "sobota 1. 8. 2026",
-    "time": "14:00 – 03:00",
+    "date": "sobota 1. augusta 2026",
+    "time": "otvorenie areálu 14:00",
     "place": "lúka nad Kamennou Porubou",
-    "entry": "voľný vstup"
+    "entry": "denný program bezplatný · večerná párty 10 €"
   },
-  "program_day": [
-    {
-      "time": "14:00",
-      "title": "Otvorenie areálu",
-      "desc": "Štart denného programu pre rodiny a deti."
-    }
-  ],
-  "program_night": [
-    {
-      "time": "",
-      "title": "Večerný DJ lineup",
-      "desc": "Presný harmonogram vystúpení doplníme čoskoro."
-    }
-  ],
-  "program_note": "Kompletný časový harmonogram doplníme čoskoro.",
+  "program_day": [],
+  "program_night": [],
   "lineup": [
-    {
-      "name": "Signate",
-      "meta": "",
-      "desc": "",
-      "photo": ""
-    },
-    {
-      "name": "Orbith",
-      "meta": "CZ",
-      "desc": "",
-      "photo": ""
-    },
-    {
-      "name": "Gregor Skyi",
-      "meta": "",
-      "desc": "",
-      "photo": ""
-    },
     {
       "name": "Bosy",
       "meta": "",
@@ -66,7 +39,13 @@
       "photo": ""
     },
     {
-      "name": "Matty White",
+      "name": "D.K.O",
+      "meta": "",
+      "desc": "",
+      "photo": ""
+    },
+    {
+      "name": "Dave K",
       "meta": "",
       "desc": "",
       "photo": ""
@@ -78,7 +57,19 @@
       "photo": ""
     },
     {
-      "name": "Dave K",
+      "name": "Gregor Szaniewski",
+      "meta": "",
+      "desc": "",
+      "photo": ""
+    },
+    {
+      "name": "Orbith",
+      "meta": "CZ",
+      "desc": "",
+      "photo": ""
+    },
+    {
+      "name": "Signate",
       "meta": "",
       "desc": "",
       "photo": ""
@@ -86,70 +77,122 @@
   ],
   "gallery": [
     {
-      "src": "uploads/gallery/meadow-sun.jpg",
-      "thumb": "uploads/gallery/thumb_meadow-sun.jpg",
-      "alt": "Západ slnka nad lúkou"
+      "src": "uploads/gallery/den-auticka.jpg",
+      "thumb": "uploads/gallery/thumb_den-auticka.jpg",
+      "alt": "Detské autíčka na lúke"
     },
     {
-      "src": "uploads/gallery/hills.jpg",
-      "thumb": "uploads/gallery/thumb_hills.jpg",
-      "alt": "Kopce Rajeckej doliny"
+      "src": "uploads/gallery/den-rodina.jpg",
+      "thumb": "uploads/gallery/thumb_den-rodina.jpg",
+      "alt": "Rodinná atmosféra počas dňa"
     },
     {
-      "src": "uploads/gallery/valley.jpg",
-      "thumb": "uploads/gallery/thumb_valley.jpg",
-      "alt": "Rajecká dolina"
+      "src": "uploads/gallery/den-kone.jpg",
+      "thumb": "uploads/gallery/thumb_den-kone.jpg",
+      "alt": "Jazda na koňoch"
     },
     {
-      "src": "uploads/gallery/ridge.jpg",
-      "thumb": "uploads/gallery/thumb_ridge.jpg",
-      "alt": "Hrebeň pri západe slnka"
+      "src": "uploads/gallery/den-hrady.jpg",
+      "thumb": "uploads/gallery/thumb_den-hrady.jpg",
+      "alt": "Skákacie hrady a autíčka"
     },
     {
-      "src": "uploads/gallery/sunset.jpg",
-      "thumb": "uploads/gallery/thumb_sunset.jpg",
-      "alt": "Západ slnka"
+      "src": "uploads/gallery/den-mini-farma.jpg",
+      "thumb": "uploads/gallery/thumb_den-mini-farma.jpg",
+      "alt": "Mini farma so zvieratkami"
     },
     {
-      "src": "uploads/gallery/windmill.jpg",
-      "thumb": "uploads/gallery/thumb_windmill.jpg",
-      "alt": "Veterník nad dolinou"
+      "src": "uploads/gallery/chill-zona.jpg",
+      "thumb": "uploads/gallery/thumb_chill-zona.jpg",
+      "alt": "Sunset chill-out zóna"
     },
     {
-      "src": "uploads/gallery/fields.jpg",
-      "thumb": "uploads/gallery/thumb_fields.jpg",
-      "alt": "Polia nad Kamennou Porubou"
+      "src": "uploads/gallery/jedlo-bar.jpg",
+      "thumb": "uploads/gallery/thumb_jedlo-bar.jpg",
+      "alt": "Sunset bar počas dňa"
     },
     {
-      "src": "uploads/gallery/trees.jpg",
-      "thumb": "uploads/gallery/thumb_trees.jpg",
-      "alt": "Stromy na lúke"
+      "src": "uploads/gallery/sunset-napis.jpg",
+      "thumb": "uploads/gallery/thumb_sunset-napis.jpg",
+      "alt": "Sunset nápis pri západe slnka"
+    },
+    {
+      "src": "uploads/gallery/den-deti.jpg",
+      "thumb": "uploads/gallery/thumb_den-deti.jpg",
+      "alt": "Popoludnie pre deti"
+    },
+    {
+      "src": "uploads/gallery/den-vyhlad.jpg",
+      "thumb": "uploads/gallery/thumb_den-vyhlad.jpg",
+      "alt": "Výhľad na Rajeckú dolinu"
+    },
+    {
+      "src": "uploads/gallery/den-tvare.jpg",
+      "thumb": "uploads/gallery/thumb_den-tvare.jpg",
+      "alt": "Maľovanie na tvár"
+    },
+    {
+      "src": "uploads/gallery/jedlo-burger.jpg",
+      "thumb": "uploads/gallery/thumb_jedlo-burger.jpg",
+      "alt": "Burger z Farmy Bardy"
+    },
+    {
+      "src": "uploads/gallery/party-svetla.jpg",
+      "thumb": "uploads/gallery/thumb_party-svetla.jpg",
+      "alt": "Večerná párty pod hviezdami"
+    },
+    {
+      "src": "uploads/gallery/party-stage.jpg",
+      "thumb": "uploads/gallery/thumb_party-stage.jpg",
+      "alt": "Stage po západe slnka"
+    },
+    {
+      "src": "uploads/gallery/party-dav.jpg",
+      "thumb": "uploads/gallery/thumb_party-dav.jpg",
+      "alt": "Tancujúci dav"
+    },
+    {
+      "src": "uploads/gallery/party-dj.jpg",
+      "thumb": "uploads/gallery/thumb_party-dj.jpg",
+      "alt": "DJ set počas noci"
     }
   ],
   "place": {
-    "text": "Podujatie sa koná na lúke nad obcou Kamenná Poruba v Rajeckej doline, približne 15 minút od Žiliny.",
-    "parking": "Parkovanie bude zabezpečené v blízkosti areálu. Presné pokyny doplníme pred podujatím.",
+    "text": "Podujatie sa koná na lúke nad obcou Kamenná Poruba v Rajeckej doline.",
+    "parking": "Príjazd na podujatie autom je z obce Kamenná Poruba a výjazd cez Kunerad.",
     "arrival": "Trasa z obce bude značená. Odporúčame prísť s predstihom.",
-    "maps_url": "https://www.google.com/maps/search/?api=1&query=Kamenn%C3%A1+Poruba%2C+okres+%C5%BDilina",
-    "maps_embed_q": "Kamenná Poruba, okres Žilina"
+    "maps_url": "https://maps.app.goo.gl/5fM8s1PLUezEAH6LA",
+    "maps_coords": "49.0989067,18.6941883"
   },
   "activities": [
     {
-      "icon": "🍔",
-      "title": "Stánky s jedlom",
-      "desc": "Lokálne jedlo a pitie počas celého dňa.",
+      "icon": "🧘",
+      "title": "Pilates",
+      "desc": "Cvičenie na lúke pri západe slnka.",
       "photo": ""
     },
     {
-      "icon": "🐴",
-      "title": "Jazda na koni",
-      "desc": "Vyhliadkové jazdy pre deti aj dospelých.",
+      "icon": "🕺",
+      "title": "Tanečný shuffle workshop",
+      "desc": "Nauč sa shuffle kroky priamo na mieste.",
+      "photo": ""
+    },
+    {
+      "icon": "🖌️",
+      "title": "Maľovanie na tvár",
+      "desc": "Farebné premeny pre deti.",
       "photo": ""
     },
     {
       "icon": "🏎️",
-      "title": "Autíčka a štvorkolky",
+      "title": "Detské autíčka a štvorkolky",
       "desc": "Motorizovaná zábava pre najmenších.",
+      "photo": "assets/img/sekcie/den-2.jpg"
+    },
+    {
+      "icon": "🐐",
+      "title": "Mini farma so zvieratkami",
+      "desc": "Zvieratká na dosah pre malých aj veľkých.",
       "photo": ""
     },
     {
@@ -159,27 +202,15 @@
       "photo": ""
     },
     {
-      "icon": "⚽",
-      "title": "Futbalové ihrisko",
-      "desc": "Priestor na futbal a loptové hry.",
-      "photo": ""
+      "icon": "🐴",
+      "title": "Jazda na koňoch",
+      "desc": "Vyhliadkové jazdy pre deti aj dospelých.",
+      "photo": "assets/img/sekcie/den-1.jpg"
     },
     {
-      "icon": "🎨",
-      "title": "Tvorivé dielne",
-      "desc": "Kreatívne aktivity pre deti aj rodičov.",
-      "photo": ""
-    },
-    {
-      "icon": "💨",
-      "title": "Vodné fajky",
-      "desc": "Chill zóna s vodnými fajkami.",
-      "photo": ""
-    },
-    {
-      "icon": "🖌️",
-      "title": "Maľovanie na tvár",
-      "desc": "Farebné premeny pre deti.",
+      "icon": "🚜",
+      "title": "Ukážka poľnohospodárskej techniky",
+      "desc": "Stroje, ktoré bežne nevidíš zblízka.",
       "photo": ""
     },
     {
@@ -201,16 +232,114 @@
       "photo": ""
     },
     {
-      "icon": "🧘",
-      "title": "Pilates",
-      "desc": "Cvičenie na lúke pri západe slnka.",
+      "icon": "🦅",
+      "title": "Sokoliari",
+      "desc": "Dravce v akcii nad Rajeckou dolinou.",
       "photo": ""
+    }
+  ],
+  "day": {
+    "eyebrow": "Deň pre deti aj dospelých",
+    "heading": "Brány Sunsetu otvoríme o 14:00",
+    "text": "Počas popoludnia bude pripravený program pre deti, rodičov aj všetkých, ktorí si chcú užiť leto, prírodu, hudbu a výhľad na Rajeckú dolinu.",
+    "note": "Presný časový harmonogram jednotlivých aktivít postupne zverejníme."
+  },
+  "chillout": {
+    "eyebrow": "Sunset chill-out zóna",
+    "heading": "Na Sunsete nemusíš iba tancovať",
+    "text": "V chill-out zóne si môžeš oddýchnuť, dať si vodnú fajku a v pokoji si vychutnať prírodu, hudbu a výhľad na okolitú krajinu.",
+    "text2": "Pokojne si prines vlastnú deku, nájdi si miesto na lúke a vytvor si svoj vlastný piknikový spot – alebo môžeš využiť naše sedenie."
+  },
+  "food": {
+    "eyebrow": "Jedlo a občerstvenie",
+    "heading": "Na Sunsete nájdeš",
+    "text": "Počas celého dňa budú pripravené lokálne jedlo, sladké občerstvenie aj vychladené nápoje.",
+    "vendors": [
+      {
+        "name": "Farma Bardy",
+        "desc": "Burgre s trhaným mäsom a hranolky.",
+        "icon": "🍔"
+      },
+      {
+        "name": "M&T Brothers",
+        "desc": "Čerstvé langoše a hranolky.",
+        "icon": "🥟"
+      },
+      {
+        "name": "Nomio",
+        "desc": "Palacinky, churros, lievance a šišky.",
+        "icon": "🥞"
+      },
+      {
+        "name": "Sunset bar",
+        "desc": "Pivo, limonády, miešané drinky, alko / nealko nápoje a ďalšie občerstvenie.",
+        "icon": "🍹"
+      }
+    ]
+  },
+  "party": {
+    "eyebrow": "Párty pod hviezdami",
+    "heading": "Keď zapadne slnko, Sunset sa zmení",
+    "text": "Stage sa rozžiari svetlami a špeciálnymi efektmi a lúku zaplní elektronická hudba. Čaká ťa hudobná cesta od príjemnej sunsetovej atmosféry od samého začiatku podujatia až po energickú nočnú párty.",
+    "price_label": "Vstupné na večernú párty: 10 €",
+    "price_note": "Denná časť podujatia je bezplatná. Večerná párty po západe slnka bude spoplatnená."
+  },
+  "lineup_intro": "Hudbou nás počas dňa a noci prevedú:",
+  "lineup_note": "Časový harmonogram DJ setov zverejníme pred podujatím.",
+  "atmosphere": {
+    "eyebrow": "Atmosféra, ktorú musíš zažiť",
+    "heading": "Rodinný vibe, priateľská atmosféra a energia letnej párty",
+    "text": "Počas dňa patrí lúka rodinám, priateľom, oddychu a spoločným zážitkom. Keď sa obloha nad Rajeckou dolinou sfarbí pri západe slnka, dav sa postupne premení na tancujúcu hviezdu.",
+    "text2": "Hudba, príroda a komunita sa spoja do momentu, ktorý si budeš pamätať ešte ďalšie leto.",
+    "motto": "Poď na Sunset. Poď do Raja."
+  },
+  "finale": {
+    "heading": "Vidíme sa v Raji",
+    "text": "Zober rodinu, priateľov, známych a každého, s kým sa spojíš na Sunsete.",
+    "date_line": "1. augusta 2026",
+    "place_line": "Lúka nad Kamennou Porubou",
+    "claim": "Nové miesto. Rovnaká atmosféra."
+  },
+  "sponsors": [
+    {
+      "name": "FOREAL Drevodomy",
+      "img": "assets/img/sponsors/foreal.png"
     },
     {
-      "icon": "🕺",
-      "title": "Shuffle workshop",
-      "desc": "Nauč sa shuffle kroky priamo na mieste.",
-      "photo": ""
+      "name": "Trans & rent autopožičovňa",
+      "img": "assets/img/sponsors/trans-rent.png"
+    },
+    {
+      "name": "Mattoni",
+      "img": "assets/img/sponsors/mattoni.png"
+    },
+    {
+      "name": "BROD Pizzeria",
+      "img": "assets/img/sponsors/brod.png"
+    },
+    {
+      "name": "AJOSS",
+      "img": "assets/img/sponsors/ajoss.png"
+    },
+    {
+      "name": "WoodDecor by Madera",
+      "img": "assets/img/sponsors/wood-decor.png"
+    },
+    {
+      "name": "Kofola",
+      "img": "assets/img/sponsors/kofola.png"
+    },
+    {
+      "name": "Hulec Parket",
+      "img": "assets/img/sponsors/hulec-parket.png"
+    },
+    {
+      "name": "Bikeza",
+      "img": "assets/img/sponsors/bikeza.png"
+    },
+    {
+      "name": "KL Auto",
+      "img": "assets/img/sponsors/kl-auto.png"
     }
   ]
 }

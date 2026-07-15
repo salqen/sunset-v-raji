@@ -126,12 +126,31 @@ if ($action === 'save') {
     // základné
     $c['site']['title'] = str_field('site_title', $c['site']['title']);
     $c['site']['description'] = str_field('site_description');
-    $c['site']['claim'] = str_field('site_claim');
     $c['hero']['date_line'] = str_field('hero_date');
     $c['hero']['place_line'] = str_field('hero_place');
+    $c['hero']['claim_line'] = str_field('hero_claim');
     $c['hero']['sub_line'] = str_field('hero_sub');
-    $c['about']['heading'] = str_field('about_heading');
-    $c['about']['text'] = str_field('about_text');
+    // sekcie
+    foreach ([
+        'about' => ['eyebrow','heading','text','text2','motto'],
+        'day' => ['eyebrow','heading','text','note'],
+        'chillout' => ['eyebrow','heading','text','text2'],
+        'food' => ['eyebrow','heading','text'],
+        'party' => ['eyebrow','heading','text','price_label','price_note'],
+        'atmosphere' => ['eyebrow','heading','text','text2','motto'],
+        'finale' => ['heading','text','date_line','place_line','claim'],
+    ] as $sec => $fields) {
+        foreach ($fields as $f) {
+            $c[$sec][$f] = str_field($sec . '_' . $f, (string)($c[$sec][$f] ?? ''));
+        }
+    }
+    $c['lineup_intro'] = str_field('lineup_intro');
+    $c['lineup_note'] = str_field('lineup_note');
+    // stánky s jedlom
+    $c['food']['vendors'] = array_map(
+        static fn(array $r): array => ['icon'=>$r['icon'],'name'=>$r['name'],'desc'=>$r['desc']],
+        rows_field('vendor', ['icon','name','desc'])
+    );
     // info
     $c['info']['date'] = str_field('info_date');
     $c['info']['time'] = str_field('info_time');
@@ -140,7 +159,6 @@ if ($action === 'save') {
     // program
     $c['program_day'] = rows_field('pday', ['time', 'title', 'desc']);
     $c['program_night'] = rows_field('pnight', ['time', 'title', 'desc']);
-    $c['program_note'] = str_field('program_note');
     // atrakcie (fotky spracujeme pred filtrovaním prázdnych riadkov)
     $activities = [];
     $actNames = $_POST['act']['title'] ?? [];
@@ -186,7 +204,7 @@ if ($action === 'save') {
     $c['place']['parking'] = str_field('place_parking');
     $c['place']['arrival'] = str_field('place_arrival');
     $c['place']['maps_url'] = str_field('place_maps_url');
-    $c['place']['maps_embed_q'] = str_field('place_maps_q');
+    $c['place']['maps_coords'] = str_field('place_maps_coords');
     // nastavenia
     $c['site']['facebook_event'] = str_field('set_fb');
     $c['site']['contact_email'] = str_field('set_email');
@@ -271,25 +289,85 @@ if ($action === 'password') {
   <h2>Základné texty</h2>
   <label>Titulok webu <input name="site_title" value="<?= h($c['site']['title']) ?>"></label>
   <label>Popis (meta description, zdieľanie) <textarea name="site_description" rows="3"><?= h($c['site']['description']) ?></textarea></label>
-  <label>Claim (rukopisný nadpis) <input name="site_claim" value="<?= h($c['site']['claim']) ?>"></label>
   <div class="cols">
     <label>Hero – dátum <input name="hero_date" value="<?= h($c['hero']['date_line']) ?>"></label>
     <label>Hero – miesto <input name="hero_place" value="<?= h($c['hero']['place_line']) ?>"></label>
   </div>
-  <label>Hero – podtitulok <input name="hero_sub" value="<?= h($c['hero']['sub_line']) ?>"></label>
-  <label>O podujatí – nadpis <input name="about_heading" value="<?= h($c['about']['heading']) ?>"></label>
-  <label>O podujatí – text <textarea name="about_text" rows="4"><?= h($c['about']['text']) ?></textarea></label>
-  <h2>Informačné karty</h2>
+  <label>Hero – claim <input name="hero_claim" value="<?= h($c['hero']['claim_line'] ?? '') ?>"></label>
+  <label>Hero – podtitulok <textarea name="hero_sub" rows="2"><?= h($c['hero']['sub_line']) ?></textarea></label>
+
+  <h2>Nový domov Sunsetu</h2>
+  <label>Rukopisný nadpis <input name="about_eyebrow" value="<?= h($c['about']['eyebrow'] ?? '') ?>"></label>
+  <label>Nadpis <input name="about_heading" value="<?= h($c['about']['heading']) ?>"></label>
+  <label>Text <textarea name="about_text" rows="3"><?= h($c['about']['text']) ?></textarea></label>
+  <label>Text 2 <textarea name="about_text2" rows="2"><?= h($c['about']['text2'] ?? '') ?></textarea></label>
+  <label>Motto <input name="about_motto" value="<?= h($c['about']['motto'] ?? '') ?>"></label>
+
+  <h2>Atmosféra (nad galériou)</h2>
+  <label>Rukopisný nadpis <input name="atmosphere_eyebrow" value="<?= h($c['atmosphere']['eyebrow'] ?? '') ?>"></label>
+  <label>Nadpis <input name="atmosphere_heading" value="<?= h($c['atmosphere']['heading'] ?? '') ?>"></label>
+  <label>Text <textarea name="atmosphere_text" rows="3"><?= h($c['atmosphere']['text'] ?? '') ?></textarea></label>
+  <label>Text 2 <textarea name="atmosphere_text2" rows="2"><?= h($c['atmosphere']['text2'] ?? '') ?></textarea></label>
+  <label>Motto <input name="atmosphere_motto" value="<?= h($c['atmosphere']['motto'] ?? '') ?>"></label>
+
+  <h2>Záver (Vidíme sa v Raji)</h2>
+  <label>Nadpis <input name="finale_heading" value="<?= h($c['finale']['heading'] ?? '') ?>"></label>
+  <label>Text <textarea name="finale_text" rows="2"><?= h($c['finale']['text'] ?? '') ?></textarea></label>
+  <div class="cols">
+    <label>Dátum <input name="finale_date_line" value="<?= h($c['finale']['date_line'] ?? '') ?>"></label>
+    <label>Miesto <input name="finale_place_line" value="<?= h($c['finale']['place_line'] ?? '') ?>"></label>
+  </div>
+  <label>Claim <input name="finale_claim" value="<?= h($c['finale']['claim'] ?? '') ?>"></label>
+
+  <h2>Praktické informácie – karty</h2>
   <div class="cols">
     <label>Dátum <input name="info_date" value="<?= h($c['info']['date']) ?>"></label>
-    <label>Čas <input name="info_time" value="<?= h($c['info']['time']) ?>"></label>
+    <label>Otvorenie areálu <input name="info_time" value="<?= h($c['info']['time']) ?>"></label>
     <label>Miesto <input name="info_place" value="<?= h($c['info']['place']) ?>"></label>
-    <label>Vstup <input name="info_entry" value="<?= h($c['info']['entry']) ?>"></label>
+    <label>Vstupné <input name="info_entry" value="<?= h($c['info']['entry']) ?>"></label>
   </div>
 </section>
 
 <section class="tab" id="tab-program">
-  <h2>Denný program</h2>
+  <h2>Deň pre deti aj dospelých – texty</h2>
+  <label>Rukopisný nadpis <input name="day_eyebrow" value="<?= h($c['day']['eyebrow'] ?? '') ?>"></label>
+  <label>Nadpis <input name="day_heading" value="<?= h($c['day']['heading'] ?? '') ?>"></label>
+  <label>Text <textarea name="day_text" rows="2"><?= h($c['day']['text'] ?? '') ?></textarea></label>
+  <label>Poznámka pod atrakciami <input name="day_note" value="<?= h($c['day']['note'] ?? '') ?>"></label>
+
+  <h2>Chill-out zóna</h2>
+  <label>Rukopisný nadpis <input name="chillout_eyebrow" value="<?= h($c['chillout']['eyebrow'] ?? '') ?>"></label>
+  <label>Nadpis <input name="chillout_heading" value="<?= h($c['chillout']['heading'] ?? '') ?>"></label>
+  <label>Text <textarea name="chillout_text" rows="2"><?= h($c['chillout']['text'] ?? '') ?></textarea></label>
+  <label>Text 2 <textarea name="chillout_text2" rows="2"><?= h($c['chillout']['text2'] ?? '') ?></textarea></label>
+
+  <h2>Párty pod hviezdami</h2>
+  <label>Rukopisný nadpis <input name="party_eyebrow" value="<?= h($c['party']['eyebrow'] ?? '') ?>"></label>
+  <label>Nadpis <input name="party_heading" value="<?= h($c['party']['heading'] ?? '') ?>"></label>
+  <label>Text <textarea name="party_text" rows="3"><?= h($c['party']['text'] ?? '') ?></textarea></label>
+  <div class="cols">
+    <label>Vstupné (badge) <input name="party_price_label" value="<?= h($c['party']['price_label'] ?? '') ?>"></label>
+    <label>Poznámka k vstupnému <input name="party_price_note" value="<?= h($c['party']['price_note'] ?? '') ?>"></label>
+  </div>
+
+  <h2>Jedlo a občerstvenie</h2>
+  <label>Rukopisný nadpis <input name="food_eyebrow" value="<?= h($c['food']['eyebrow'] ?? '') ?>"></label>
+  <label>Nadpis <input name="food_heading" value="<?= h($c['food']['heading'] ?? '') ?>"></label>
+  <label>Text <textarea name="food_text" rows="2"><?= h($c['food']['text'] ?? '') ?></textarea></label>
+  <p class="hint">Stánky s jedlom:</p>
+  <div class="rows" data-rows="vendor">
+    <?php foreach (($c['food']['vendors'] ?? []) as $v): ?>
+    <div class="row3">
+      <input name="vendor[icon][]" placeholder="🍔" value="<?= h($v['icon'] ?? '') ?>">
+      <input name="vendor[name][]" placeholder="Názov stánku" value="<?= h($v['name']) ?>">
+      <input name="vendor[desc][]" placeholder="Čo ponúka" value="<?= h($v['desc']) ?>">
+      <button type="button" class="del" title="Odstrániť">×</button>
+    </div>
+    <?php endforeach; ?>
+  </div>
+  <button type="button" class="add" data-add="vendor">+ Pridať stánok</button>
+
+  <h2>Denný harmonogram (nepovinný – zobrazí sa po doplnení)</h2>
   <div class="rows" data-rows="pday">
     <?php foreach ($c['program_day'] as $it): ?>
     <div class="row3">
@@ -302,7 +380,7 @@ if ($action === 'password') {
   </div>
   <button type="button" class="add" data-add="pday">+ Pridať bod</button>
 
-  <h2>Večerný program</h2>
+  <h2>Večerný harmonogram (nepovinný – zobrazí sa po doplnení)</h2>
   <div class="rows" data-rows="pnight">
     <?php foreach ($c['program_night'] as $it): ?>
     <div class="row3">
@@ -315,7 +393,6 @@ if ($action === 'password') {
   </div>
   <button type="button" class="add" data-add="pnight">+ Pridať bod</button>
 
-  <label style="margin-top:18px">Poznámka pod programom <input name="program_note" value="<?= h($c['program_note']) ?>"></label>
 
   <h2>Atrakcie a aktivity</h2>
   <p class="hint">Fotka je nepovinná – bez fotky sa zobrazí ikona. Odporúčaný formát: na šírku (3:2), min. 900 px.</p>
@@ -337,6 +414,10 @@ if ($action === 'password') {
 
 <section class="tab" id="tab-lineup">
   <h2>Lineup</h2>
+  <div class="cols">
+    <label>Úvodný text <input name="lineup_intro" value="<?= h($c['lineup_intro'] ?? '') ?>"></label>
+    <label>Poznámka pod lineupom <input name="lineup_note" value="<?= h($c['lineup_note'] ?? '') ?>"></label>
+  </div>
   <p class="hint">Fotka je nepovinná – bez fotky sa zobrazí iniciálka. Odporúčaný formát: štvorec, min. 400×400 px.</p>
   <div class="rows" data-rows="lineup">
     <?php foreach ($c['lineup'] as $dj): ?>
@@ -381,7 +462,7 @@ if ($action === 'password') {
   <label>Parkovanie <textarea name="place_parking" rows="3"><?= h($c['place']['parking']) ?></textarea></label>
   <label>Príchod <textarea name="place_arrival" rows="3"><?= h($c['place']['arrival']) ?></textarea></label>
   <label>Odkaz na Google Maps <input name="place_maps_url" value="<?= h($c['place']['maps_url']) ?>"></label>
-  <label>Hľadaný výraz pre mapu na webe <input name="place_maps_q" value="<?= h($c['place']['maps_embed_q']) ?>"></label>
+  <label>GPS súradnice pre mapu (lat,lng) <input name="place_maps_coords" value="<?= h($c['place']['maps_coords'] ?? '') ?>" placeholder="49.0989067,18.6941883"></label>
 </section>
 
 <section class="tab" id="tab-nastavenia">

@@ -150,6 +150,30 @@
     });
   }
 
+
+  /* ---------- parallax ---------- */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pxEls = Array.prototype.slice.call(document.querySelectorAll('[data-parallax] img'));
+  var ticking = false;
+  function parallax() {
+    ticking = false;
+    var vh = window.innerHeight;
+    pxEls.forEach(function (img) {
+      var rect = img.parentNode.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > vh) return;
+      var center = rect.top + rect.height / 2 - vh / 2;
+      img.style.transform = 'translateY(' + (center * -0.12).toFixed(1) + 'px)';
+    });
+  }
+  function requestParallax() {
+    if (!ticking) { ticking = true; requestAnimationFrame(parallax); }
+  }
+  if (!reduceMotion && pxEls.length) {
+    window.addEventListener('scroll', requestParallax, { passive: true });
+    window.addEventListener('resize', requestParallax, { passive: true });
+    parallax();
+  }
+
   /* ---------- cookies + tracking ---------- */
   var CK = 'svr_consent';
   var bar = document.getElementById('cookiebar');

@@ -30,10 +30,14 @@ uploads/             fotky nahrané cez administráciu
 - Dá sa upravovať: texty, info karty, denný/večerný program, atrakcie (ikona, popis, fotka), lineup (vrátane fotiek DJ-ov), galéria (upload, mazanie, poradie, alt popisy), miesto/parkovanie, kontaktné e-maily, odkazy (FB event, Instagram), Meta Pixel ID a Google Analytics ID.
 - Fotky sa pri uploade automaticky zmenšia a zoptimalizujú (galéria max 1600 px + náhľad, DJ fotky max 600 px).
 
+## Sponzori
+
+Logá partnerov sú v `assets/img/sponsors/` (vytiahnuté z PSD plagátu) a zoznam v `data/content.json` (kľúč `sponsors`). Nové logo: nahraj PNG s priehľadnosťou do priečinka a pridaj záznam do JSON-u.
+
 ## Hero video
 
 Do `assets/video/` nahraj `hero.webm` (a ideálne aj `hero.mp4` pre Safari/iOS).
-Web ho automaticky použije namiesto statickej grafiky. Odporúčanie: 10–20 s slučka bez zvuku, 1280×720, max ~4–6 MB. Kým video nie je nahrané, zobrazuje sa grafika zo západu slnka.
+Web ho automaticky použije namiesto statickej grafiky. Odporúčanie: 10–20 s slučka bez zvuku, 1280×720, max ~4–6 MB. Kým video nie je nahrané, zobrazuje sa fotografia západu slnka z plagátu (bez textov, vytiahnutá z PSD).
 
 ## Kontaktný formulár
 
