@@ -1,0 +1,4 @@
+# V uploadoch sa nesmie spúšťať PHP
+<FilesMatch "\.(php|phtml|php5|phar)$">
+  Require all denied
+</FilesMatch>

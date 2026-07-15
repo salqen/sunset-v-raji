@@ -1,0 +1,149 @@
+{
+  "site": {
+    "title": "Sunset v Raji 2026",
+    "description": "Raz do roka ožije celá Rajecká dolina. Sobota 1. augusta 2026, lúka nad Kamennou Porubou. Denný program pre rodiny a večerná elektronická párty pri západe slnka. Vstup voľný.",
+    "claim": "Raz do roka ožije celá Rajecká dolina.",
+    "facebook_event": "",
+    "instagram": "",
+    "meta_pixel_id": "",
+    "ga_id": ""
+  },
+  "hero": {
+    "date_line": "1 / 8 / 2026",
+    "place_line": "Lúka nad Kamennou Porubou",
+    "sub_line": "Denný program pre rodiny a večerná elektronická párty"
+  },
+  "about": {
+    "heading": "Deň v prírode, ktorý sa večer zmení na párty",
+    "text": "Sunset v Raji je jednodňové podujatie v prírode nad Kamennou Porubou. Popoludnie patrí rodinám a deťom – aktivity, stánky s jedlom, tvorivé dielne a šport. So západom slnka sa lúka premení a začína sa večerná elektronická párty pod holým nebom, ktorá trvá do skorého rána."
+  },
+  "info": {
+    "date": "sobota 1. 8. 2026",
+    "time": "14:00 – 03:00",
+    "place": "lúka nad Kamennou Porubou",
+    "entry": "voľný vstup"
+  },
+  "day_activities": [
+    "Stánky s jedlom",
+    "Jazda na koni",
+    "Autíčka a štvorkolky",
+    "Skákacie hrady",
+    "Futbalové ihrisko",
+    "Tvorivé dielne",
+    "Vodné fajky",
+    "Maľovanie na tvár",
+    "Tatér",
+    "Barber",
+    "Šermiari",
+    "Pilates",
+    "Shuffle workshop"
+  ],
+  "program_day": [
+    {
+      "time": "14:00",
+      "title": "Otvorenie areálu",
+      "desc": "Štart denného programu pre rodiny a deti."
+    }
+  ],
+  "program_night": [
+    {
+      "time": "",
+      "title": "Večerný DJ lineup",
+      "desc": "Presný harmonogram vystúpení doplníme čoskoro."
+    }
+  ],
+  "program_note": "Kompletný časový harmonogram doplníme čoskoro.",
+  "lineup": [
+    {
+      "name": "Signate",
+      "meta": "",
+      "desc": "",
+      "photo": ""
+    },
+    {
+      "name": "Orbith",
+      "meta": "CZ",
+      "desc": "",
+      "photo": ""
+    },
+    {
+      "name": "Gregor Skyi",
+      "meta": "",
+      "desc": "",
+      "photo": ""
+    },
+    {
+      "name": "Bosy",
+      "meta": "",
+      "desc": "",
+      "photo": ""
+    },
+    {
+      "name": "Matty White",
+      "meta": "",
+      "desc": "",
+      "photo": ""
+    },
+    {
+      "name": "Domya",
+      "meta": "",
+      "desc": "",
+      "photo": ""
+    },
+    {
+      "name": "Dave K",
+      "meta": "",
+      "desc": "",
+      "photo": ""
+    }
+  ],
+  "gallery": [
+    {
+      "src": "uploads/gallery/meadow-sun.jpg",
+      "thumb": "uploads/gallery/thumb_meadow-sun.jpg",
+      "alt": "Západ slnka nad lúkou"
+    },
+    {
+      "src": "uploads/gallery/hills.jpg",
+      "thumb": "uploads/gallery/thumb_hills.jpg",
+      "alt": "Kopce Rajeckej doliny"
+    },
+    {
+      "src": "uploads/gallery/valley.jpg",
+      "thumb": "uploads/gallery/thumb_valley.jpg",
+      "alt": "Rajecká dolina"
+    },
+    {
+      "src": "uploads/gallery/ridge.jpg",
+      "thumb": "uploads/gallery/thumb_ridge.jpg",
+      "alt": "Hrebeň pri západe slnka"
+    },
+    {
+      "src": "uploads/gallery/sunset.jpg",
+      "thumb": "uploads/gallery/thumb_sunset.jpg",
+      "alt": "Západ slnka"
+    },
+    {
+      "src": "uploads/gallery/windmill.jpg",
+      "thumb": "uploads/gallery/thumb_windmill.jpg",
+      "alt": "Veterník nad dolinou"
+    },
+    {
+      "src": "uploads/gallery/fields.jpg",
+      "thumb": "uploads/gallery/thumb_fields.jpg",
+      "alt": "Polia nad Kamennou Porubou"
+    },
+    {
+      "src": "uploads/gallery/trees.jpg",
+      "thumb": "uploads/gallery/thumb_trees.jpg",
+      "alt": "Stromy na lúke"
+    }
+  ],
+  "place": {
+    "text": "Podujatie sa koná na lúke nad obcou Kamenná Poruba v Rajeckej doline, približne 15 minút od Žiliny.",
+    "parking": "Parkovanie bude zabezpečené v blízkosti areálu. Presné pokyny doplníme pred podujatím.",
+    "arrival": "Trasa z obce bude značená. Odporúčame prísť s predstihom.",
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Kamenn%C3%A1+Poruba%2C+okres+%C5%BDilina",
+    "maps_embed_q": "Kamenná Poruba, okres Žilina"
+  }
+}

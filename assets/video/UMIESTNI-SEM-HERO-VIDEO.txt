@@ -1,0 +1,8 @@
+Sem nahraj hero video ako:
+  hero.webm  (povinné – hlavný formát)
+  hero.mp4   (odporúčané – záloha pre Safari/iOS)
+
+Odporúčania:
+- dĺžka 10–20 s, slučka, bez zvuku
+- rozlíšenie 1280×720 (stačí), max ~4–6 MB
+- web ho automaticky použije namiesto grafiky, žiadna zmena kódu nie je potrebná
