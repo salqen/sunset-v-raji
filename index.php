@@ -9,6 +9,8 @@ $site = $c['site']; $hero = $c['hero']; $info = $c['info']; $place = $c['place']
 $heroVideoMobile = is_file(__DIR__ . '/assets/video/hero-mobile.mp4') ? 'assets/video/hero-mobile.mp4' : null;
 $finaleVideoMobile = is_file(__DIR__ . '/assets/video/finale-mobile.mp4') ? 'assets/video/finale-mobile.mp4' : null;
 $baseUrl = 'https://sunsetvraji.sk/';
+$assetV = trim((string)@file_get_contents(__DIR__ . '/data/asset-version.txt'));
+if ($assetV === '') { $assetV = '10'; }
 $priceParts = array_map('trim', explode(':', (string)($c['party']['price_label'] ?? ''), 2));
 $priceTitle = $priceParts[0]; $priceValue = $priceParts[1] ?? '';
 $actsPhoto = array_values(array_filter($c['activities'], fn($a) => !empty($a['photo'])));
@@ -42,7 +44,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preload" href="assets/fonts/Montserrat-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css?v=7">
+<link rel="stylesheet" href="assets/css/style.css?v=<?= h($assetV) ?>">
 <script type="application/ld+json">
 <?= json_encode([
   '@context' => 'https://schema.org',
@@ -90,7 +92,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
       <img class="hero-photo" src="assets/img/hero.jpg" alt="" fetchpriority="high">
     </picture>
     <?php if ($heroVideoMobile): ?>
-    <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/hero-mobile.jpg" data-src-mobile="<?= h($heroVideoMobile) ?>"></video>
+    <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/hero-mobile.jpg" data-src-mobile="<?= h($heroVideoMobile) ?>?v=<?= h($assetV) ?>"></video>
     <?php endif; ?>
     <div class="hero-shade"></div>
   </div>
@@ -110,7 +112,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- NOVÝ DOMOV SUNSETU -->
 <section class="section parallax-sec" id="domov">
-  <div class="parallax-bg" aria-hidden="true"><img src="assets/img/bg/domov.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="parallax-bg" aria-hidden="true"><img src="uploads/gallery/den-vyhlad.jpg" alt="" loading="lazy" decoding="async"></div>
   <div class="parallax-shade shade-solid-blue" aria-hidden="true"></div>
   <div class="wrap narrow center parallax-content">
     <p class="eyebrow script light-script"><?= h($c['about']['eyebrow']) ?></p>
@@ -350,7 +352,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
   <div class="finale-bg" aria-hidden="true">
     <img src="assets/img/bg/finale.jpg" alt="" loading="lazy" decoding="async">
     <?php if ($finaleVideoMobile): ?>
-    <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/bg/finale.jpg" data-src-mobile="<?= h($finaleVideoMobile) ?>"></video>
+    <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/bg/finale.jpg" data-src-mobile="<?= h($finaleVideoMobile) ?>?v=<?= h($assetV) ?>"></video>
     <?php endif; ?>
   </div>
   <div class="finale-shade" aria-hidden="true"></div>
@@ -436,6 +438,6 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
   </div>
 </div>
 
-<script src="assets/js/main.js?v=5" defer></script>
+<script src="assets/js/main.js?v=<?= h($assetV) ?>" defer></script>
 </body>
 </html>

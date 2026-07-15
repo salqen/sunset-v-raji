@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 function h(?string $s): string { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
+$assetV = trim((string)@file_get_contents(__DIR__ . '/data/asset-version.txt')) ?: '10';
 ?>
 <!DOCTYPE html>
 <html lang="sk">
@@ -13,7 +14,7 @@ function h(?string $s): string { return htmlspecialchars((string)$s, ENT_QUOTES,
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png">
-<link rel="stylesheet" href="assets/css/style.css?v=4">
+<link rel="stylesheet" href="assets/css/style.css?v=<?= h($assetV) ?>">
 <style>
 .legal{max-width:820px;margin:0 auto;padding:120px 20px 72px}
 .legal h1{font-size:clamp(1.6rem,5vw,2.2rem);margin-bottom:1.2rem}

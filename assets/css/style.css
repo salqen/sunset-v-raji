@@ -96,7 +96,7 @@ h4{font-size:1.05rem;margin-bottom:.35rem}
 .hero-claim{color:#fff;margin-top:12px;text-shadow:0 2px 12px rgba(0,0,0,.5)}
 .hero-sub{color:rgba(255,255,255,.92);margin:12px 0 26px;font-size:clamp(.92rem,3vw,1.08rem);max-width:52ch;text-shadow:0 1px 8px rgba(0,0,0,.45)}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
-.hero-scroll{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);z-index:2;width:28px;height:46px;border:2px solid rgba(255,255,255,.7);border-radius:16px;display:flex;justify-content:center;padding-top:8px}
+.hero-scroll{position:absolute;bottom:72px;left:50%;transform:translateX(-50%);z-index:3;width:28px;height:46px;border:2px solid rgba(255,255,255,.7);border-radius:16px;display:flex;justify-content:center;padding-top:8px}
 .hero-scroll span{width:4px;height:9px;background:#fff;border-radius:2px;animation:scrollhint 1.6s infinite}
 @keyframes scrollhint{0%{transform:translateY(0);opacity:1}70%{transform:translateY(14px);opacity:0}100%{opacity:0}}
 
@@ -107,12 +107,17 @@ h4{font-size:1.05rem;margin-bottom:.35rem}
 .parallax-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(5,25,38,.62),rgba(5,25,38,.5) 50%,rgba(5,25,38,.66))}
 .shade-warm{background:linear-gradient(180deg,rgba(30,20,5,.55),rgba(38,22,4,.42) 50%,rgba(30,18,4,.6))}
 .shade-dark{background:linear-gradient(180deg,rgba(4,14,22,.72),rgba(4,14,22,.55) 50%,rgba(4,14,22,.75))}
-.shade-solid-blue{background:linear-gradient(180deg,rgba(5,29,43,.97) 0%,rgba(7,41,60,.93) 55%,rgba(4,20,32,.97) 100%)}
+.shade-solid-blue{background:linear-gradient(180deg,#051d2b 0%,rgba(7,41,60,.92) 45%,rgba(4,20,32,.96) 100%)}
 .shade-solid-sunset{background:linear-gradient(180deg,rgba(46,22,4,.9) 0%,rgba(84,41,6,.85) 45%,rgba(38,19,4,.92) 100%)}
 /* vlnky medzi tmavými sekciami */
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:44px;z-index:2;background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201440%2048'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0,26%20C240,4%20480,44%20720,28%20C960,12%201200,6%201440,30%20L1440,48%20L0,48%20Z'%20fill='%23051d2b'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat;pointer-events:none}
 #party::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:44px;z-index:2;background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201440%2048'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0,26%20C240,4%20480,44%20720,28%20C960,12%201200,6%201440,30%20L1440,48%20L0,48%20Z'%20fill='%2307293c'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat;pointer-events:none}
 .finale::before{content:"";position:absolute;left:0;right:0;top:-1px;height:44px;z-index:2;background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201440%2048'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0,0%20L1440,0%20L1440,20%20C1200,44%20960,10%20720,26%20C480,42%20240,6%200,28%20Z'%20fill='%23051d2b'/%3E%3C/svg%3E") center top/100% 100% no-repeat;pointer-events:none}
+/* vlnky hore na foto sekciách – fotka „zarezaná“ do vlnovky (farba = spodok sekcie nad ňou) */
+#chill::before,#party::before,#informacie::before{content:"";position:absolute;left:0;right:0;top:-1px;height:44px;z-index:2;background:center top/100% 100% no-repeat;pointer-events:none}
+#chill::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201440%2048'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0,0%20L1440,0%20L1440,20%20C1200,44%20960,10%20720,26%20C480,42%20240,6%200,28%20Z'%20fill='%23f2e5c9'/%3E%3C/svg%3E")}
+#party::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201440%2048'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0,0%20L1440,0%20L1440,20%20C1200,44%20960,10%20720,26%20C480,42%20240,6%200,28%20Z'%20fill='%23f1e5cd'/%3E%3C/svg%3E")}
+#informacie::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201440%2048'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0,0%20L1440,0%20L1440,20%20C1200,44%20960,10%20720,26%20C480,42%20240,6%200,28%20Z'%20fill='%23efe1c3'/%3E%3C/svg%3E")}
 .parallax-content{position:relative;z-index:2}
 .price-box{display:inline-flex;flex-direction:column;align-items:center;gap:2px;margin-top:26px;padding:20px 48px;border:1px solid rgba(208,179,126,.6);border-radius:16px;background:rgba(4,18,28,.42);backdrop-filter:blur(3px);box-shadow:0 10px 34px rgba(0,0,0,.28)}
 .price-title{font-size:.76rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
@@ -159,9 +164,9 @@ h4{font-size:1.05rem;margin-bottom:.35rem}
 .food-photos img{border-radius:var(--radius);width:100%;aspect-ratio:16/9;object-fit:cover;box-shadow:var(--shadow)}
 
 /* lineup */
-.section-night{position:relative;background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;overflow:hidden}
+.section-night{position:relative;margin-top:-1px;background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;overflow:hidden}
 .section-night h2{color:#fff}
-.night-bg{position:absolute;inset:0;opacity:.16}
+.night-bg{position:absolute;inset:0;z-index:0;opacity:.16;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 200px);mask-image:linear-gradient(180deg,transparent 0,#000 200px)}
 .night-bg img{width:100%;height:100%;object-fit:cover}
 .night-content{position:relative;z-index:2}
 .lineup-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:38px;justify-items:center}
@@ -224,13 +229,13 @@ h4{font-size:1.05rem;margin-bottom:.35rem}
 .form-status.err{color:#c0392b}
 
 /* partneri */
-.sponsors-sec{position:relative;z-index:3;overflow:hidden;padding:88px 0 70px;background:linear-gradient(175deg,#0b3b5c 0%,var(--navy) 55%,var(--navy-deep) 100%)}
+.sponsors-sec{position:relative;z-index:3;overflow:hidden;padding:88px 0 70px;background:linear-gradient(180deg,#0b3b5c 0%,var(--navy) 55%,var(--navy-deep) 100%)}
 .sponsors-sec::before{content:"";position:absolute;left:0;right:0;top:-1px;height:44px;background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201440%2048'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0,0%20L1440,0%20L1440,20%20C1200,44%20960,10%20720,26%20C480,42%20240,6%200,28%20Z'%20fill='%23f4e9d1'/%3E%3C/svg%3E") center top/100% 100% no-repeat;pointer-events:none}
 .sponsors-sec h2{color:#fff}
 .sponsors-sec .sponsors-row{margin-top:36px}
 
 /* finale + footer so spoločným pozadím */
-.finale{position:relative;overflow:hidden;color:#c9d6dd;clip-path:inset(0)}
+.finale{position:relative;margin-top:-1px;overflow:hidden;color:#c9d6dd;clip-path:inset(0)}
 .finale-bg{position:fixed;inset:0;z-index:0}
 .finale-bg img{width:100%;height:100%;object-fit:cover}
 .finale-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(4,14,22,.7) 0%,rgba(4,14,22,.55) 35%,rgba(3,10,16,.88) 78%,rgba(2,7,11,.96) 100%)}
@@ -305,7 +310,10 @@ h4{font-size:1.05rem;margin-bottom:.35rem}
   .act-body h4{font-size:.88rem}
   .act-body p{font-size:.8rem}
   .act-chips li{padding:8px 14px;font-size:.85rem}
-  .section-cream::before,.sponsors-sec::before,.hero::after,#party::after,.finale::before{height:26px}
+  .section-cream::before,.sponsors-sec::before,.hero::after,#party::after,.finale::before,#chill::before,#party::before,#informacie::before{height:26px}
+  .hero-scroll{display:none}
+  .price-title::before,.price-title::after{display:none}
+  .price-title{letter-spacing:.14em}
   .section-cream::before{top:-25px}
   .price-box{padding:16px 30px;max-width:100%}
   .price-title::before,.price-title::after{width:14px;margin:0 6px}

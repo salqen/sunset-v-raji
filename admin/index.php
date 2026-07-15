@@ -243,6 +243,11 @@ if ($action === 'save') {
     $msg = 'Uložené. <a href="../" target="_blank">Pozrieť web →</a>';
     $c = loadContent($CONTENT);
 }
+if ($action === 'clearcache') {
+    checkCsrf();
+    file_put_contents($ROOT . '/data/asset-version.txt', (string)time(), LOCK_EX);
+    $msg = 'Cache vyčistená. Návštevníkom sa pri ďalšej návšteve stiahnu čerstvé súbory (CSS, skripty, videá).';
+}
 if ($action === 'password') {
     checkCsrf();
     $new = (string)($_POST['new_password'] ?? '');
@@ -479,6 +484,14 @@ if ($action === 'password') {
 </section>
 
 <div class="savebar"><button type="submit" class="save">Uložiť zmeny</button></div>
+</form>
+
+<form method="post" class="editor pass" id="tab-cache">
+  <h2>Cache webu</h2>
+  <p class="hint">Ak niekomu web zobrazuje starú verziu (napr. sa nenačíta video alebo nový vzhľad), vyčistite cache – všetkým návštevníkom sa vynúti stiahnutie aktuálnych súborov. Texty a fotky z administrácie sa prejavujú okamžite aj bez tohto kroku.</p>
+  <input type="hidden" name="action" value="clearcache">
+  <input type="hidden" name="csrf" value="<?= h($csrf) ?>">
+  <button type="submit" class="save alt">Vyčistiť cache</button>
 </form>
 
 <form method="post" class="editor pass" id="tab-heslo">

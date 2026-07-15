@@ -57,7 +57,7 @@
       "photo": ""
     },
     {
-      "name": "Gregor Szaniewski",
+      "name": "Gregor Skyi",
       "meta": "",
       "desc": "",
       "photo": ""
@@ -169,13 +169,13 @@
       "icon": "🧘",
       "title": "Pilates",
       "desc": "Cvičenie na lúke pri západe slnka.",
-      "photo": ""
+      "photo": "uploads/activities/pilates.jpg"
     },
     {
       "icon": "🕺",
       "title": "Tanečný shuffle workshop",
       "desc": "Nauč sa shuffle kroky priamo na mieste.",
-      "photo": ""
+      "photo": "uploads/activities/shuffle-workshop.jpg"
     },
     {
       "icon": "🖌️",
@@ -193,13 +193,13 @@
       "icon": "🐐",
       "title": "Mini farma so zvieratkami",
       "desc": "Zvieratká na dosah pre malých aj veľkých.",
-      "photo": "uploads/gallery/den-mini-farma.jpg"
+      "photo": "uploads/activities/farma-so-zvieratkami.jpg"
     },
     {
       "icon": "🏰",
       "title": "Skákacie hrady",
       "desc": "Vyšantenie pre deti celé popoludnie.",
-      "photo": "uploads/gallery/den-hrady.jpg"
+      "photo": "uploads/activities/skakacie-hrady.jpg"
     },
     {
       "icon": "🐴",
@@ -208,33 +208,57 @@
       "photo": "assets/img/sekcie/den-1.jpg"
     },
     {
+      "icon": "⚽",
+      "title": "Futbalové ihrisko",
+      "desc": "Loptové hry pre malých aj veľkých.",
+      "photo": "uploads/activities/futbalove-ihrisko.jpg"
+    },
+    {
+      "icon": "🎨",
+      "title": "Tvorivé dielne",
+      "desc": "Kreatívne tvorenie pre deti.",
+      "photo": "uploads/activities/tvorive-dielne.jpg"
+    },
+    {
+      "icon": "⛑️",
+      "title": "Kurz prvej pomoci",
+      "desc": "Ukážky a nácvik prvej pomoci pre deti aj dospelých.",
+      "photo": "uploads/activities/kurz-prvej-pomoci.jpg"
+    },
+    {
       "icon": "🚜",
       "title": "Ukážka poľnohospodárskej techniky",
       "desc": "Stroje, ktoré bežne nevidíš zblízka.",
-      "photo": ""
+      "photo": "uploads/activities/ukazka-polnohospodarskej-techniky.jpg"
     },
     {
       "icon": "🖋️",
       "title": "Tatér",
       "desc": "Tetovanie priamo na mieste.",
-      "photo": ""
+      "photo": "uploads/activities/tater.jpg"
     },
     {
-      "icon": "💈",
-      "title": "Barber",
-      "desc": "Strih a úprava brady pod holým nebom.",
-      "photo": ""
+      "icon": "💨",
+      "title": "Vodné fajky",
+      "desc": "Vodná fajka v chill-out zóne.",
+      "photo": "uploads/activities/vodne-fajky.jpg"
     },
     {
       "icon": "⚔️",
       "title": "Šermiari",
       "desc": "Ukážky historického šermu.",
-      "photo": ""
+      "photo": "uploads/activities/sermiari.jpg"
     },
     {
       "icon": "🦅",
       "title": "Sokoliari",
       "desc": "Dravce v akcii nad Rajeckou dolinou.",
+      "photo": "uploads/activities/sokoliari.jpg"
+    },
+    {
+      "icon": "💈",
+      "title": "Barber",
+      "desc": "Strih a úprava brady pod holým nebom.",
       "photo": ""
     }
   ],
