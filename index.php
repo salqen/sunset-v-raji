@@ -43,7 +43,9 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="preload" href="assets/fonts/Montserrat-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Montserrat-var-sk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="assets/img/hero.webp" media="(min-width: 641px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/hero-mobile.webp" media="(max-width: 640px)" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/style.css?v=<?= h($assetV) ?>">
 <script type="application/ld+json">
 <?= json_encode([
@@ -69,7 +71,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 <header class="nav" id="nav">
   <div class="nav-inner">
     <a class="nav-brand" href="#hore" aria-label="Sunset v Raji – späť hore">
-      <img src="assets/img/logo-white.png" alt="Sunset v Raji" width="86" height="60">
+      <img src="assets/img/logo-white.webp" alt="Sunset v Raji" width="86" height="60">
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Hlavná navigácia">
       <a href="#den">Program</a>
@@ -88,16 +90,16 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 <section class="hero" id="hero">
   <div class="hero-bg" aria-hidden="true">
     <picture>
-      <source media="(max-width: 640px)" srcset="assets/img/hero-mobile.jpg">
-      <img class="hero-photo" src="assets/img/hero.jpg" alt="" fetchpriority="high">
+      <source media="(max-width: 640px)" srcset="assets/img/hero-mobile.webp">
+      <img class="hero-photo" src="assets/img/hero.webp" alt="" fetchpriority="high">
     </picture>
     <?php if ($heroVideoMobile): ?>
-    <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/hero-mobile.jpg" data-src-mobile="<?= h($heroVideoMobile) ?>?v=<?= h($assetV) ?>"></video>
+    <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/hero-mobile.webp" data-src-mobile="<?= h($heroVideoMobile) ?>?v=<?= h($assetV) ?>"></video>
     <?php endif; ?>
     <div class="hero-shade"></div>
   </div>
   <div class="hero-content">
-    <img class="hero-logo" src="assets/img/logo-white.png" alt="Sunset v Raji" width="360" height="252" fetchpriority="high">
+    <img class="hero-logo" src="assets/img/logo-white.webp" alt="Sunset v Raji" width="360" height="252" fetchpriority="high">
     <p class="hero-date"><?= h($hero['date_line']) ?></p>
     <p class="hero-place"><?= h($hero['place_line']) ?></p>
     <p class="hero-claim script"><?= h($hero['claim_line'] ?? '') ?></p>
@@ -112,7 +114,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- NOVÝ DOMOV SUNSETU -->
 <section class="section parallax-sec" id="domov">
-  <div class="parallax-bg" aria-hidden="true"><img src="uploads/gallery/den-vyhlad.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="parallax-bg" aria-hidden="true"><img src="uploads/gallery/den-vyhlad.webp" alt="" loading="lazy" decoding="async"></div>
   <div class="parallax-shade shade-solid-blue" aria-hidden="true"></div>
   <div class="wrap narrow center parallax-content">
     <p class="eyebrow script light-script"><?= h($c['about']['eyebrow']) ?></p>
@@ -170,7 +172,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- CHILL-OUT ZÓNA -->
 <section class="section parallax-sec" id="chill">
-  <div class="parallax-bg" aria-hidden="true"><img src="assets/img/bg/chill.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="parallax-bg" aria-hidden="true"><img src="assets/img/bg/chill.webp" alt="" loading="lazy" decoding="async"></div>
   <div class="parallax-shade" aria-hidden="true"></div>
   <div class="wrap narrow center parallax-content">
     <p class="eyebrow script light-script"><?= h($c['chillout']['eyebrow']) ?></p>
@@ -198,15 +200,15 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
       <?php endforeach; ?>
     </div>
     <div class="food-photos">
-      <img src="assets/img/sekcie/jedlo-1.jpg" alt="Sunset bar počas dňa" loading="lazy" decoding="async">
-      <img src="assets/img/sekcie/jedlo-2.jpg" alt="Burger z Farmy Bardy" loading="lazy" decoding="async">
+      <img src="assets/img/sekcie/jedlo-1.webp" alt="Sunset bar počas dňa" loading="lazy" decoding="async">
+      <img src="assets/img/sekcie/jedlo-2.webp" alt="Burger z Farmy Bardy" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
 
 <!-- PÁRTY POD HVIEZDAMI -->
 <section class="section parallax-sec" id="party">
-  <div class="parallax-bg" aria-hidden="true"><img src="assets/img/bg/party.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="parallax-bg" aria-hidden="true"><img src="assets/img/bg/party.webp" alt="" loading="lazy" decoding="async"></div>
   <div class="parallax-shade shade-solid-sunset" aria-hidden="true"></div>
   <div class="wrap narrow center parallax-content">
     <p class="eyebrow script light-script"><?= h($c['party']['eyebrow']) ?></p>
@@ -222,7 +224,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- LINEUP -->
 <section class="section section-night" id="lineup">
-  <div class="night-bg" aria-hidden="true"><img src="assets/img/sekcie/lineup.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="night-bg" aria-hidden="true"><img src="assets/img/sekcie/lineup.webp" alt="" loading="lazy" decoding="async"></div>
   <div class="wrap night-content">
     <div class="center">
       <h2>Lineup</h2>
@@ -281,7 +283,7 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 
 <!-- PRAKTICKÉ INFORMÁCIE -->
 <section class="section parallax-sec" id="informacie">
-  <div class="parallax-bg" aria-hidden="true"><img src="assets/img/bg/info.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="parallax-bg" aria-hidden="true"><img src="assets/img/bg/info.webp" alt="" loading="lazy" decoding="async"></div>
   <div class="parallax-shade shade-dark" aria-hidden="true"></div>
   <div class="wrap parallax-content">
     <div class="center">
@@ -336,8 +338,8 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
     <p class="eyebrow script light-script">Ďakujeme, že to robia s nami</p>
     <h2>Partneri podujatia</h2>
     <div class="sponsors-row">
-      <?php foreach ($c['sponsors'] as $s): ?>
-      <img src="<?= h($s['img']) ?>" alt="<?= h($s['name']) ?>" title="<?= h($s['name']) ?>" loading="lazy" decoding="async">
+      <?php foreach ($c['sponsors'] as $s): $spCls = str_contains($s['img'], 'brod') ? ' class="sp-lg"' : ''; ?>
+      <img<?= $spCls ?> src="<?= h($s['img']) ?>" alt="<?= h($s['name']) ?>" title="<?= h($s['name']) ?>" loading="lazy" decoding="async">
       <?php endforeach; ?>
     </div>
   </div>
@@ -349,15 +351,15 @@ $mapsCoords = $place['maps_coords'] ?? '49.0989067,18.6941883';
 <!-- FINALE + FOOTER (spoločné pozadie) -->
 <div class="finale">
   <div class="finale-bg" aria-hidden="true">
-    <img src="assets/img/bg/finale.jpg" alt="" loading="lazy" decoding="async">
+    <img src="assets/img/bg/finale.webp" alt="" loading="lazy" decoding="async">
     <?php if ($finaleVideoMobile): ?>
-    <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/bg/finale.jpg" data-src-mobile="<?= h($finaleVideoMobile) ?>?v=<?= h($assetV) ?>"></video>
+    <video class="bg-video-mobile" muted loop playsinline preload="none" poster="assets/img/bg/finale.webp" data-src-mobile="<?= h($finaleVideoMobile) ?>?v=<?= h($assetV) ?>"></video>
     <?php endif; ?>
   </div>
   <div class="finale-shade" aria-hidden="true"></div>
   <div class="finale-content">
     <div class="wrap center finale-cta">
-      <img class="foot-logo" src="assets/img/logo-white.png" alt="" width="200" height="140" loading="lazy">
+      <img class="foot-logo" src="assets/img/logo-white.webp" alt="" width="200" height="140" loading="lazy">
       <h2 class="light finale-heading"><?= h($c['finale']['heading']) ?></h2>
       <p class="light-p finale-text"><?= h($c['finale']['text']) ?></p>
       <p class="foot-date"><?= h($c['finale']['date_line']) ?></p>

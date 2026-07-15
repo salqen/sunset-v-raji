@@ -24,11 +24,11 @@ $assetV = trim((string)@file_get_contents(__DIR__ . '/data/asset-version.txt')) 
 .legal .back{display:inline-block;margin-bottom:1.4rem;font-weight:600}
 </style>
 </head>
-<body>
+<body class="legal-page">
 <header class="nav solid" id="nav">
   <div class="nav-inner">
     <a class="nav-brand" href="/" aria-label="Sunset v Raji – domov">
-      <img src="assets/img/logo-white.png" alt="Sunset v Raji" width="86" height="60">
+      <img src="assets/img/logo-white.webp" alt="Sunset v Raji" width="86" height="60">
     </a>
     <nav class="nav-links nav-simple" aria-label="Hlavná navigácia">
       <a href="/#den">Program</a>

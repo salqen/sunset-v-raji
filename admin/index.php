@@ -99,16 +99,16 @@ function handleUpload(array $file, string $destDir, string $prefix, int $maxW, b
         imagecopyresampled($r, $img, 0, 0, 0, 0, $maxW, $nh, $w, $hh);
         imagedestroy($img); $img = $r;
     }
-    $name = $prefix . '-' . date('Ymd-His') . '-' . substr(bin2hex(random_bytes(4)), 0, 6) . '.jpg';
+    $name = $prefix . '-' . date('Ymd-His') . '-' . substr(bin2hex(random_bytes(4)), 0, 6) . '.webp';
     $path = $destDir . '/' . $name;
-    imagejpeg($img, $path, 82);
+    imagewebp($img, $path, 80);
     $result = ['src' => $name];
     if ($thumb) {
         $tw = 480; $w2 = imagesx($img); $h2 = imagesy($img);
         $th = (int)round($h2 * $tw / $w2);
         $t = imagecreatetruecolor($tw, $th);
         imagecopyresampled($t, $img, 0, 0, 0, 0, $tw, $th, $w2, $h2);
-        imagejpeg($t, $destDir . '/thumb_' . $name, 75);
+        imagewebp($t, $destDir . '/thumb_' . $name, 76);
         imagedestroy($t);
         $result['thumb'] = 'thumb_' . $name;
     }
